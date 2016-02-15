@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :tours, except: [ :destroy ] do
     resources :bookings, only: [ :create ]
   end
+  resources :users, only: [:show]
   root to: 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

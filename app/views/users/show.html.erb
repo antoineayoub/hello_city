@@ -1,0 +1,6 @@
+<% if current_user.user_picture? %>
+  <%= cl_image_tag current_user.user_picture.path, width: 200, height: 300, crop: :fill %>
+<% end %>
+
+<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+
