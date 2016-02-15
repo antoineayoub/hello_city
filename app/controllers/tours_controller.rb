@@ -4,6 +4,10 @@ class ToursController < ApplicationController
     @tours = Tour.all
   end
 
+  def index_user
+    @user_tours = Tour.where("user_id = #{current_user.id}")
+  end
+
   def new
     @tour = Tour.new
   end
@@ -34,6 +38,7 @@ class ToursController < ApplicationController
 
   def show
     @tour = Tour.find(params[:id])
+    @booking = Booking.new
   end
 
   private

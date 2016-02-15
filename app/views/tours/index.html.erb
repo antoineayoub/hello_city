@@ -2,6 +2,7 @@
 <p>Find me in app/views/tours/index.html.erb</p>
 
 <%= link_to("new", new_tour_path) %>
+<%= link_to("my listings", tours_index_user_path(current_user)) %>
 
 <%= current_user.id %>
 

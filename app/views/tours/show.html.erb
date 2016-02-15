@@ -11,3 +11,6 @@
 <%= @tour.price %>
 
 
+<% unless current_user.id == @tour.user_id %>
+  <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
+<% end %>
