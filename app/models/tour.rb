@@ -8,5 +8,6 @@ class Tour < ActiveRecord::Base
   validates :language, presence: true
   validates :address, presence: true
   validates :guide_level, presence: true
+  validates :user_id, presence: true
   # add details user info to validate the form (phone num...)
 end

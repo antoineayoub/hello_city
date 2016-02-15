@@ -1,0 +1,14 @@
+<h1>Tours#index</h1>
+<p>Find me in app/views/tours/index.html.erb</p>
+
+<%= link_to("new", new_tour_path) %>
+
+<%= current_user.id %>
+
+<% @tours.each do |tour| %>
+  <li>
+    <%= link_to("view", tour_path(tour)) %>
+    <%= tour.name %>
+    <%= link_to("edit", edit_tour_path(tour)) %>
+  </li>
+<% end %>

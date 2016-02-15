@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'tours/new'
+
+  get 'tours/show'
+
+  get 'tours/index'
+
   devise_for :users
   mount Attachinary::Engine => "/attachinary"
   resources :tours, except: [ :destroy ] do
