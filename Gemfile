@@ -17,6 +17,15 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+# gems for pictures: cloudinary & attachinary
+gem "cloudinary"
+gem "attachinary"
+gem "jquery-fileupload-rails"
+gem "coffee-rails"
+
+# for pagination
+gem "kaminari"
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
