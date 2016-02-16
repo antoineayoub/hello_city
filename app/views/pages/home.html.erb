@@ -7,7 +7,7 @@
         <div class="form-group">
           <%= form_tag tours_path, method: :get do %>
             <%= text_field_tag :address %>
-            <%= submit_tag("Go !", class: "btn btn-warning") %>
+            <%= submit_tag("Go !", class: "btn btn-danger") %>
           <% end %>
         </div>
       </div>
@@ -15,7 +15,13 @@
   </div>
 </div>
 
-<%= render "shared/card", tours: @tours %>
-
-
-
+<div class="wrapper-grey padded">
+  <div class="container">
+    <h2 class="text-center">Votre prochain guide</h2>
+      <div class="row padded">
+        <% @tours.sample(3).each do |tour| %>
+        <%= render "shared/card", tour: tour %>
+        <% end %>
+      </div>
+  </div>
+</div>
