@@ -1,0 +1,5 @@
+<%= form_for(booking) do |f|%>
+  <%= f.hidden_field :status, :value => "cancelled" %>
+  <%= f.button :submit, :class => 'btn btn-primary', data: { confirm: 'Are your Sure ?' } do  %>
+    <i class="fa fa-times-circle"></i>
+<% end %>
