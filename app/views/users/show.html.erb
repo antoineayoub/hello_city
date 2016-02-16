@@ -9,19 +9,29 @@
       <h1><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
       <p><%= current_user.summary %></p>
       <p>Account created since <%= current_user.created_at.year %></p>
-      <%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Edit", edit_users_path, class: "btn btn-primary" %>
 
       <p>My Bookings</p>
       <ul>
       <% current_user.bookings.each do |booking| %>
-        <li><%= booking.tour.name %> with <%= booking.tour.user.first_name.capitalize %> (<%=booking.status %>)</li>
-        <%= link_to "Cancelled", tour_booking_path(booking, booking.tour) %> <!-- FAIRE LE CONTROLEUR UPDATE DANS BOOKINGS.RB -->
+        <li><%= booking.id %> <%= booking.tour.name %> with <%= booking.tour.user.first_name.capitalize %> (<%=booking.status %>)</li>
+        <%= form_for(booking) do |f|%>
+          <%= f.hidden_field :status, :value => "cancelled" %>
+          <%= f.button :submit, :class => 'btn btn-primary', data: { confirm: 'Are your Sure ?' } do  %>
+            <i class="fa fa-times-circle"></i>
+          <% end %>
+        <% end %>
       <% end %>
       </ul>
       <p>My Requests</p>
       <ul>
       <% current_user.tours.each do |tour| %>
         <li><%= tour.name %></li>
+        <%= form_for(booking) do |f|%>
+          <%= f.hidden_field :status, :value => "cancelled" %>
+          <%= f.button :submit, :class => 'btn btn-primary', data: { confirm: 'Are your Sure ?' } do  %>
+            <i class="fa fa-times-circle"></i>
+        <% end %>
         <%= link_to "Accepted", tour_path(tour) %>
         <%= link_to "Cancelled", tour_path(tour) %>
       <% end %>
