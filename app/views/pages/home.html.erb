@@ -1,2 +1,21 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="banner" style="background: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://img0.mxstatic.com/wallpapers/bbdd39d1d45ba86ce5406727919b11ab_large.jpeg');">
+  <div class="container">
+    <div><h1 class="text-center">Suivez le guide</h1></div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="form-group">
+          <%= form_tag tours_path, method: :get do %>
+            <%= text_field_tag :address %>
+            <%= submit_tag("Go !", class: "btn btn-warning") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/card", tours: @tours %>
+
+
+
