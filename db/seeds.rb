@@ -28,14 +28,14 @@ tour_tbl_id = []
   user.save
   user_tbl_id << user.id
 
-  puts "Email: #{user.email} Password: #{password}"
+  puts "Id: #{user.id} Email: #{user.email} Password: #{password}"
 end
 
 # CREATE TOUR
 10.times do
   tour = Tour.new(
           name: Faker::Hipster.sentence(3),
-          description: Faker::Hipster.sentences,
+          description: Faker::Hipster.sentence,
           live: 1,
           guide_level: Faker::Number.between(1, 5),
           price: Faker::Number.between(40, 80),

@@ -17,9 +17,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def pending
-
-  end
   private
 
   def user_params

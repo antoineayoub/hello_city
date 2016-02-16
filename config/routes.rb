@@ -15,8 +15,9 @@ Rails.application.routes.draw do
     collection do
       get 'index_user/:id', to: 'tours#index_user', as: :index_user
     end
-    resources :bookings, only: [ :create, :update ]
+    resources :bookings, only: [ :create ]
   end
+  resources :bookings, only: [ :update ]
 
   root to: 'pages#home'
 
