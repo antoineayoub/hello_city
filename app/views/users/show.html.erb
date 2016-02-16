@@ -27,11 +27,6 @@
       <ul>
       <% current_user.tours.each do |tour| %>
         <li><%= tour.name %></li>
-        <%= form_for(booking) do |f|%>
-          <%= f.hidden_field :status, :value => "cancelled" %>
-          <%= f.button :submit, :class => 'btn btn-primary', data: { confirm: 'Are your Sure ?' } do  %>
-            <i class="fa fa-times-circle"></i>
-        <% end %>
         <%= link_to "Accepted", tour_path(tour) %>
         <%= link_to "Cancelled", tour_path(tour) %>
       <% end %>

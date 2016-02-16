@@ -5,15 +5,11 @@
 
 
 <div class="tour-gallery">
-  <h2>Tour Photos:</h2>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2">
+    <div class="tour-gallery-card">
+  <h3>Tour Photos:</h3>
         <% @tour.photos.each do |photo| %>
         <a href="<%= cl_image_path @tour.photos.first&.path %>" class="swipebox" title="">
-            <%= cl_image_tag(photo.path, { size: '300x200', crop: :fill }) %></a>
+            <%= cl_image_tag(photo.path, { size: '250x200', crop: :fill }) %></a>
         <% end %>
-      </div>
-    </div>
   </div>
 </div>
