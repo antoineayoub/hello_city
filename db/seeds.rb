@@ -17,10 +17,11 @@ tour_tbl_id = []
 
 10.times do
   password = Faker::Internet.password(8)
+  first_name = Faker::Name.first_name
   user = User.new(
-          first_name: Faker::Name.first_name,
+          first_name: first_name,
           last_name: Faker::Name.last_name,
-          email: Faker::Internet.email,
+          email: Faker::Internet.email(first_name),
           password: password
           )
   user.save
