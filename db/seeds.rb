@@ -23,7 +23,8 @@ tour_tbl_id = []
           first_name: first_name,
           last_name: Faker::Name.last_name,
           email: Faker::Internet.email(first_name),
-          password: password
+          password: password,
+          #user_picture: 'profil_pic_default'
           )
   user.save
   user_tbl_id << user.id
