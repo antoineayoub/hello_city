@@ -1,18 +1,34 @@
 <!-- add option to edit if user is the owner -->
 
 
-
-<div style="height: 600px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
-<h1><%= @tour.name %></h1>
+<!-- banner -->
+<div class="tour-banner">
+<div class="tour-background" style="height: 600px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
 </div>
-
-<div class="guide-profile">
-  <%= cl_image_tag(@tour.user.user_picture, { size: '250x200', crop: :fill }) %></a>
-</div>
-
 <% if @tour.user_id == current_user.id %>
-  <%= link_to("edit", edit_tour_path(@tour)) %>
+  <%= link_to("Edit Profile", edit_tour_path(@tour), html_options = {class: "tour-edit-button btn btn-primary btn-lg"}) %>
 <% end %>
+</div>
+<!-- guide information -->
+<div class="guide-profile">
+  <div class="guide-main-info">
+    <div class="image">
+    <%= cl_image_tag(@tour.user.user_picture&.path, { crop: :fill, class: "avatar-extra-large" }) %>
+    </div>
+    <p><%= @tour.user.first_name %></p>
+  </div>
+  <div class="guide-other-info">
+    <h3> <%= @tour.name %> </h3>
+    <p> <%= @tour.description %> </>
+  </div>
+</div>
+
+<!-- tour summary -->
+<div class="tour-summary">
+  <h3></h3>
+</div>
+
+
 
 <%= render "shared/tour_show_gallery", tour: @tour %>
 
