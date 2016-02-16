@@ -9,7 +9,9 @@
 <%= @tour.name %>
 <%= @tour.description %>
 <%= @tour.price %>
-
+<% @tour.photos.each do |photo| %>
+    <%= cl_image_tag(photo.path, { size: '300x300', crop: :fit }) %>
+<% end %>
 
 <% unless current_user.id == @tour.user_id %>
   <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
