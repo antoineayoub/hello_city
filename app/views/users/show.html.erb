@@ -9,7 +9,7 @@
       <h1><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
       <p><%= current_user.summary %></p>
       <p>Account created since <%= current_user.created_at.year %></p>
-      <%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Edit", edit_users_path, class: "btn btn-primary" %>
 
       <p>My Bookings</p>
       <ul>

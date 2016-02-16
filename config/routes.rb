@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :users, only: [:show]
+  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  resources :users, only: [:show ] do
+    collection do
+      get '/:id/edit', to: 'users#edit', as: :edit
+      put '/:id', to: 'users#update'
+      patch '/:id', to: 'users#update'
+    end
+  end
 
   mount Attachinary::Engine => "/attachinary"
 
