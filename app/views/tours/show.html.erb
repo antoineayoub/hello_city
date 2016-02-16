@@ -1,0 +1,16 @@
+<h1>Tours#show</h1>
+<p>Find me in app/views/tours/show.html.erb</p>
+
+<!-- add option to edit if user is the owner -->
+<% if @tour.user_id == current_user.id %>
+  <%= link_to("edit", edit_tour_path(@tour)) %>
+<% end %>
+
+<%= @tour.name %>
+<%= @tour.description %>
+<%= @tour.price %>
+
+
+<% unless current_user.id == @tour.user_id %>
+  <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
+<% end %>

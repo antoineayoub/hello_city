@@ -26,6 +26,7 @@ gem "coffee-rails"
 # for pagination
 gem "kaminari"
 
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
