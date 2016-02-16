@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :tours, except: [ :destroy ] do
     collection do
-      get 'tours/index_user/:id', to: 'tours#index_user', as: :tours_index_user
+      get 'index_user/:id', to: 'tours#index_user', as: :index_user
     end
     resources :bookings, only: [ :create, :update ]
   end
