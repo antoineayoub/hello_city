@@ -1,20 +1,12 @@
-<div class="wrapper-grey padded">
-  <div class="container">
-    <h2 class="text-center">Votre prochain guide</h2>
-      <div class="row padded">
-        <% tours.sample(3).each do |tour| %>
-          <div class="col-xs-12 col-sm-4">
-            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path tour.photos.first&.path %>');">
-              <div class="card-category"><%= tour.price %></div>
-              <div class="card-description">
-                <h2><%= tour.name %></h2>
-                <p><%= tour.description %></p>
-              </div>
-              <img class="card-user avatar" src="<%= tour.user.user_picture %>">
-              <%= link_to "", tour_path(tour), class: "card-link" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+<div class="col-xs-12 col-sm-4">
+  <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path tour.photos.first&.path %>');">
+    <div class="card-category"><%= tour.price.to_i %>€ /heure</div>
+    <div class="card-description">
+      <h2><%= tour.name %></h2>
+      <p><%= tour.description %></p>
+    </div>
+    <%= image_tag "tour.user.user_picture&.path", {class: "card-user avatar", id: "avatar_user"}%>
+    <%= link_to "", tour_path(tour), class: "card-link" %>
   </div>
 </div>
+
