@@ -2,11 +2,13 @@
 
 
 
-
-<div style="height:600px; background-image:url(<%= cl_image_path @tour.photos.first&.path %>); background-position: center; background-size: cover !important;">
+<div style="height: 600px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
 <h1><%= @tour.name %></h1>
 </div>
 
+<div class="guide-profile">
+  <%= cl_image_tag(@tour.user.user_picture, { size: '250x200', crop: :fill }) %></a>
+</div>
 
 <% if @tour.user_id == current_user.id %>
   <%= link_to("edit", edit_tour_path(@tour)) %>
@@ -21,7 +23,6 @@
 <% unless current_user.id == @tour.user_id %>
   <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
 <% end %>
-
 
 
 
