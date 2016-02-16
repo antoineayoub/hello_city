@@ -2,6 +2,8 @@ class Tour < ActiveRecord::Base
   belongs_to :user
   has_many :bookings
 
+  has_attachments :photos, maximum: 5, accept: [:jpg, :png]
+
   validates :price, presence: true
   validates :name, presence: true
   validates :description, presence: true
