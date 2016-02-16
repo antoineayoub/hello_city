@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :tours, dependent: :destroy
   has_many :bookings
+  has_attachment :user_picture
 
   validates :first_name, presence: true
   validates :last_name, presence: true

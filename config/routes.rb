@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   mount Attachinary::Engine => "/attachinary"
   resources :tours, except: [ :destroy ] do
-    resources :bookings, only: [ :create ]
+    resources :bookings, only: [ :create, :update ]
   end
+  resources :users, only: [:show]
   root to: 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

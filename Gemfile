@@ -26,6 +26,9 @@ gem "coffee-rails"
 # for pagination
 gem "kaminari"
 
+# for facebookconnect
+gem 'omniauth-facebook'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -33,6 +36,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
+  gem 'faker'
 end
 
 group :production do
