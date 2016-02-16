@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_attachment :user_picture
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
 end

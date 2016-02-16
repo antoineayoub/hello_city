@@ -1,0 +1,10 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-md-offset-4">
+      <%= simple_form_for [locals[:tour], locals[:booking]], method: 'post' do |f| %>  <%= f.input :start_at %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
