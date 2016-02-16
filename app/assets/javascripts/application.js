@@ -6,3 +6,8 @@
 //= require attachinary
 //= require bootstrap-datepicker
 //= require_tree .
+
+
+$(document).ready(function(){
+  $( '.swipebox' ).swipebox();
+})

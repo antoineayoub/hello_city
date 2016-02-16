@@ -1,18 +1,27 @@
-<h1>Tours#show</h1>
-<p>Find me in app/views/tours/show.html.erb</p>
-
 <!-- add option to edit if user is the owner -->
+
+
+
+
+<div style="height:600px; background-image:url(<%= cl_image_path @tour.photos.first&.path %>); background-position: center; background-size: cover !important;">
+<h1><%= @tour.name %></h1>
+</div>
+
+
 <% if @tour.user_id == current_user.id %>
   <%= link_to("edit", edit_tour_path(@tour)) %>
 <% end %>
 
-<%= @tour.name %>
+<%= render "shared/tour_show_gallery", tour: @tour %>
+
+
 <%= @tour.description %>
 <%= @tour.price %>
-<% @tour.photos.each do |photo| %>
-    <%= cl_image_tag(photo.path, { size: '300x300', crop: :fit }) %>
-<% end %>
 
 <% unless current_user.id == @tour.user_id %>
   <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
 <% end %>
+
+
+
+

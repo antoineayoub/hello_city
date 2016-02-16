@@ -33,12 +33,12 @@ class ToursController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
     @tour = Tour.find(params[:id])
     @booking = Booking.new
+    @url = "http://res.cloudinary.com/dhh83l8ql/image/upload/#{@tour.photos.first.path}"
   end
 
   private

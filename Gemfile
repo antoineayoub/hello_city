@@ -26,7 +26,9 @@ gem "coffee-rails"
 # for pagination
 gem "kaminari"
 
-gem 'rails-assets-bootstrap-datepicker'
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
+end
 
 # for facebookconnect
 gem 'omniauth-facebook'
