@@ -26,6 +26,9 @@ gem "coffee-rails"
 # for pagination
 gem "kaminari"
 
+# for facebookconnect
+gem 'omniauth-facebook'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
