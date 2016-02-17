@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :tours, dependent: :destroy
   has_many :bookings
-  has_attachment :user_picture
+  has_attachment :picture
 
 
   def self.find_for_facebook_oauth(auth)
@@ -18,11 +18,9 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      Cloudinary::Uploader.upload(auth.info.image) #user.user_picture = auth.info.image
+      user.picture_url = auth.info.image
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
 end
-
-# A REVOIR LE SOUCI DE TOKEN AVEC PICTURE

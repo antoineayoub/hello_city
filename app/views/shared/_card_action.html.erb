@@ -1,0 +1,12 @@
+<div class="col-xs-12 col-sm-4">
+  <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path booking.tour.photos.first.path %>');">
+    <div class="card-category"><%= booking.tour.name %></div>
+    <div class="card-description">
+      <h2>with <%= booking.tour.user.first_name %></h2>
+      <p><%= booking.start_at %></p>
+    </div>
+    <%= cl_image_tag booking.tour.user.picture.path, {class: "card-user avatar", id: "avatar_user"}%>
+    <%# link_to "", tour_path(tour), class: "card-link" %>
+  </div>
+</div>
+
