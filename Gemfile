@@ -33,6 +33,7 @@ end
 
 # for facebookconnect
 gem 'omniauth-facebook'
+gem 'faker'
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -41,7 +42,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
-  gem 'faker'
 end
 
 group :production do

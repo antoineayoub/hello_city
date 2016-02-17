@@ -39,7 +39,7 @@
       <div class="card-information">
         <div class="guide-main-info">
           <div class="image">
-          <%= cl_image_tag(@tour.user.user_picture&.path, { crop: :fill, class: "avatar-extra-large" }) %>
+          <%= cl_image_tag(@tour.user.picture.path, { crop: :fill, class: "avatar-extra-large" }) %>
           </div>
           <p><%= @tour.user.first_name %></p>
         </div>
