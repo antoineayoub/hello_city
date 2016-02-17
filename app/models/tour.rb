@@ -12,4 +12,7 @@ class Tour < ActiveRecord::Base
   validates :guide_level, presence: true
   validates :user_id, presence: true
   # add details user info to validate the form (phone num...)
+  #
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
