@@ -2,6 +2,10 @@ class ToursController < ApplicationController
 
   def index
     @tours = Tour.all
+    @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
+      marker.lat tour.latitude
+      marker.lng tour.longitude
+   end
   end
 
   def index_user
