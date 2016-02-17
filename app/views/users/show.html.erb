@@ -1,39 +1,84 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <% if current_user.user_picture %>
-        <%= cl_image_tag current_user.user_picture.path, width: 200, height: 200, crop: :thumb, gravity: :face %>
-      <% else %>
-      <% end %>
-
-      <h1><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
-      <p><%= current_user.summary %></p>
-      <p>Account created since <%= current_user.created_at.year %></p>
-      <%= link_to "Edit", edit_users_path, class: "btn btn-primary" %>
-
-      <p>My Bookings</p>
-      <ul>
-      <% current_user.bookings.each do |booking| %>
-        <li><%= booking.id %> <%= booking.tour.name %> with <%= booking.tour.user.first_name.capitalize %> (<%=booking.status %>)</li>
-        <%= form_for(booking) do |f|%>
-          <%= f.hidden_field :status, :value => "cancelled" %>
-          <%= f.button :submit, :class => 'btn btn-primary', data: { confirm: 'Are your Sure ?' } do  %>
-            <i class="fa fa-times-circle"></i>
+<div class="padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="col-xs-12 col-sm-3">
+          <% if current_user.picture %>
+            <%= cl_image_tag current_user.picture.path, width: 200, height: 200, crop: :thumb, gravity: :face %>
+          <% else %>
+            <%= link_to(edit_users_path, class: 'a-nodecoration' )  do %>
+              <div class="avatar-square avatar-square-centered">
+                <span>Add a picture</span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+          <h1><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
+          <p><%= current_user.summary %></p>
+          <p>Account created since <%= current_user.created_at.year %></p>
+          <%= link_to "Edit", edit_users_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+          <div class="col-xs-12 col-sm-6">
+            <h2>Visites</h2>
+            <% if current_user.tours == [] %>
+              <div class="card-empty">
+                <i>Aucune Commande</i>
+              </div>
+            <% else %>
+              <ul>
+              <% current_user.bookings.each do |booking| %>
+                <%# render "shared/card_action", booking: booking %>
+                <%= form_for(booking) do |f|%>
+                  <%= f.hidden_field :status, :value => "cancelled" %>
+                  <%= f.button :submit, :class => 'btn btn-primary', data: { confirm: 'Are your Sure ?' } do  %>
+                    <i class="fa fa-times-circle"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+              </ul>
+            <% end %>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <h2>Demandes</h2>
+            <% if current_user.tours == [] %>
+              <div class="card-empty">
+                <i>Aucune demande</i>
+              </div>
+            <% else %>
+              <ul>
+              <% current_user.tours.each do |tour| %>
+                <li><%= tour.name %></li>
+                <%= link_to "Accepted", tour_path(tour) %>
+                <%= link_to "Cancelled", tour_path(tour) %>
+              <% end %>
+              </ul>
+            <% end %>
+          </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <h2>Mes parcours</h2>
+        <% if current_user.tours == [] %>
+          <%= link_to(new_tour_path, class: 'a-nodecoration') do %>
+            <div class="card-empty">
+              <i>Add a tour</i>
+            </div>
+          <% end %>
+        <% else %>
+          <% current_user.tours.each do |tour| %>
+            <%= render "shared/card", tour: tour %>
           <% end %>
         <% end %>
-      <% end %>
-      </ul>
-      <p>My Requests</p>
-      <ul>
-      <% current_user.tours.each do |tour| %>
-        <li><%= tour.name %></li>
-        <%= link_to "Accepted", tour_path(tour) %>
-        <%= link_to "Cancelled", tour_path(tour) %>
-      <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </div>
+
+
+
 
 <!-- AJOUTER SUR LA NAVBAR LE CHIFFRE SUR LA BOITE MAIL QUI AUGMENTE QUAND UNE DEMANDE OU UNE ACCEPTATION -->
 <!-- FAIRE FONCTIONNER LES LIENS ACCEPTED ET CANCELLED DANS CONTROLEUR UPDATE DE BOOKING -->

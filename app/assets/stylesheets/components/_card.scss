@@ -46,3 +46,13 @@
   top: 10px;
   right: 10px;
 }
+
+.card-empty{
+  background-color: $gray-lighter;
+  color: $gray-light;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height:150px;
+}
+

@@ -5,7 +5,7 @@
       <h2><%= tour.name %></h2>
       <p><%= tour.description %></p>
     </div>
-    <%= image_tag tour.user.user_picture&.path, {class: "card-user avatar", id: "avatar_user"}%>
+    <%= cl_image_tag tour.user.picture.path, {class: "card-user avatar", id: "avatar_user"}%>
     <%= link_to "", tour_path(tour), class: "card-link" %>
   </div>
 </div>
