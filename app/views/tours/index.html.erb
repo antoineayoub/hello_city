@@ -1,6 +1,42 @@
 <h1 class="text-center">Soignez vos connaissances avec nos guides</h1>
 
-<div id="map" style="width: 100%; height: 600px;"></div>
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+<%= link_to("new", new_tour_path) %>
+<%= link_to("my listings", index_user_tours_path(current_user)) %>
+
+<%= current_user.id %>
+
+<div class="wrapper-white padded">
+  <div class="container">
+
+    <% @tours.each do |tour| %>
+        <%= render "shared/card_listing", tour: tour %>
+    <% end %>
+  </div>
+</div>
+
+<div class="wrapper-grey">
+<div class="text-center padded" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= image_tag("globe.png", alt: "globe", class: "xsmall_image" ) %>
+        <h3>Découvrir les villes</h3>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= image_tag("student.png", alt: "student", class: "xsmall_image" ) %>
+        <h3>Les guides les plus intéréssants</h3>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= image_tag("euro.png", alt: "euro", class: "xsmall_image" ) %>
+        <h3>Les meilleurs tarifs</h3>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -13,17 +49,4 @@
       });
     })
   <% end %>
-<% end %>
-
-<%= link_to("new", new_tour_path) %>
-<%= link_to("my listings", index_user_tours_path(current_user)) %>
-
-<%= current_user.id %>
-
-<% @tours.each do |tour| %>
-  <li>
-    <%= link_to("view", tour_path(tour)) %>
-    <%= tour.name %>
-    <%= link_to("edit", edit_tour_path(tour)) %>
-  </li>
 <% end %>

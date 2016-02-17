@@ -7,9 +7,9 @@
     <p>La meilleure façon de découvrir et comprendre une ville</p>
   </div>
   <div id="wrapper-form">
-      <%= simple_form_for tours_path, method: :get, html: { class: "form-inline searchbar" } do |f| %>
-            <%= f.input :address, label: false, placeholder: 'Où cherchez-vous une visite ?' %>
-            <%= f.submit "Chercher", class: "btn btn-danger" %>
+      <%= form_tag(tours_path, :method => "get", class: "form-inline searchbar") do %>
+            <%= text_field_tag :address, params[:address], class: "form-control fields", placeholder: 'Où cherchez-vous une visite ?' %>
+            <%= submit_tag "Chercher", class: "btn btn-danger" %>
       <% end %>
       </form>
   </div>

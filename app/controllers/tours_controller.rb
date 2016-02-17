@@ -1,10 +1,9 @@
 class ToursController < ApplicationController
-
   def index
     @tours = Tour.all
-    @markers = Gmaps4rails.build_markers(@flats) do |flat, marker|
-      marker.lat flat.latitude
-      marker.lng flat.longitude
+    @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
+      marker.lat tour.latitude
+      marker.lng tour.longitude
     end
   end
 
@@ -49,5 +48,4 @@ class ToursController < ApplicationController
   def tour_params
     params.require(:tour).permit(:name, :description, :live, :guide_level, :language, :address, :price, photos: [])
   end
-
 end
