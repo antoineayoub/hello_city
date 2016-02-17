@@ -22,3 +22,17 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+.avatar-square-centered {
+  background-image: image-url("avatar.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width:200px;
+  height:200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $gray-lighter;
+}
+.avatar-square-centered:hover{
+  color: $gray-light;
+}
