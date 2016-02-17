@@ -1,3 +1,40 @@
 // Place all the styles related to the bookings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.decide-booking-card {
+    height: 500px;
+    width: 316px;
+    padding: 5px;
+    margin-left: 30px;
+    background-color: #F3F3F3;
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px #DFDDDD;
+    position: relative;
+    right: -32%;
+    top: 253px;
+}
+.datepicker {
+  border-radius: 4px;
+  direction: ltr;
+  margin-left: 13px;
+  box-shadow: none;
+  margin-top: 32px;
+  top: 480px !important;
+  left: 76% !important;
+}
+.booking-title {
+  padding: 0px 10px;
+  border-bottom: 1px dotted grey;
+  margin-bottom: 11px;
+  text-align: center;
+  color: dark-grey;
+}
+.form-booking {
+  display: flex;
+  justify-content: center;
+}
+.book-now-button {
+  margin-bottom: 10px;
+  padding: 5px 20px;
+}

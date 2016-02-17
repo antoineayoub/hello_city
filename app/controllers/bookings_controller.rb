@@ -4,9 +4,8 @@ class BookingsController < ApplicationController
     @tour = Tour.find(params[:tour_id])
     @booking = Booking.new(booking_params)
     @booking.status = "pending"  #should put default in migration?
-    @booking.user_id = @user.id
-    @booking.tour_id = @tour.id
-
+    @booking.user = @user
+    @booking.tour = @tour
     if @booking.save
       redirect_to user_path(@user) # not working now, to be checked tomorrow
     else
