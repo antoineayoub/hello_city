@@ -1,14 +1,42 @@
-<div class="banner" style="background: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= asset_path 'background_home.jpeg' %>);">
+<video autoplay="" loop="" poster="" id="bgvid">
+    <source src="https://res.cloudinary.com/dhh83l8ql/video/upload/ac_none/v1455650593/paris_video_zs8eea.mp4" type="video/mp4">
+</video>
+<div class="banner">
+  <div class="overlay">
+    <h1>SUIVEZ LE GUIDE</h1>
+    <p>La meilleure façon de découvrir et comprendre une ville</p>
+  </div>
+  <div id="wrapper-form">
+      <%= simple_form_for tours_path, method: :get, html: { class: "form-inline searchbar" } do |f| %>
+            <%= f.input :address, label: false, placeholder: 'Où cherchez-vous une visite ?' %>
+            <%= f.submit "Chercher", class: "btn btn-danger" %>
+      <% end %>
+      </form>
+  </div>
+  <div class="angle-position">
+    <%= link_to("#about") do %>
+      <i class="fa fa-angle-down i-size pulse"></i>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-center padded" id="about">
   <div class="container">
-    <div><h1 class="text-center">Suivez le guide</h1></div>
     <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <div class="form-group">
-          <%= form_tag tours_path, method: :get do %>
-            <%= text_field_tag :address %>
-            <%= submit_tag("Go !", class: "btn btn-danger") %>
-          <% end %>
-        </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= image_tag("globe.png", alt: "globe", class: "small_image" ) %>
+        <h2>Découvrir les villes</h2>
+        <p>Tous les lieux culturels et mythiques</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= image_tag("student.png", alt: "student", class: "small_image" ) %>
+        <h2>Les guides les plus intéréssants</h2>
+        <p>Choississez parmi des milliers de guides professionnels</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= image_tag("euro.png", alt: "euro", class: "small_image" ) %>
+        <h2>Les meilleurs tarifs</h2>
+        <p>Le meilleur prix pour le meilleur service</p>
       </div>
     </div>
   </div>
@@ -24,25 +52,3 @@
       </div>
   </div>
 </div>
-
-<div class="text-center padded">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= image_tag("globe.png", alt: "globe", class: "small_image" ) %>
-            <h2>Discover the world</h2>
-            <p>All the cultural places</p>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= image_tag("student.png", alt: "student", class: "small_image" ) %>
-              <h2>The most interesting guides</h2>
-                <p>Check the reviews and choose</p>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= image_tag("euro.png", alt: "euro", class: "small_image" ) %>
-              <h2>Quick and cheap</h2>
-                <p>You won't find an cheapest and esaiest way</p>
-            </div>
-          </div>
-      </div>
-    </div>

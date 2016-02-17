@@ -5,10 +5,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.status = "pending"  #should put default in migration?
     @booking.user_id = @user.id
-    @tour_id = @tour.id
+    @booking.tour_id = @tour.id
 
     if @booking.save
-      redirect_to user_path(current_user) # not working now, to be checked tomorrow
+      redirect_to user_path(@user) # not working now, to be checked tomorrow
     else
       redirect_to tour_path(@tour) # should flash error message
     end

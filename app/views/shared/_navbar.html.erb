@@ -1,7 +1,8 @@
 <div class="navbar-wagon">
+
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    LOGO TO DO
+    <%= image_tag "/images/logo_white.png" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -25,7 +26,7 @@
           <div class="badge badge-blue">3</div>
         </div>
       <% end %>
-
+      <span class="navbar-user-name"><%= current_user.first_name.capitalize%></span>
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
@@ -53,16 +54,15 @@
           </ul>
         </div>
       </div>
-
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
 
     <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <%# link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
@@ -78,3 +78,25 @@
   </div>
 </div>
 
+<!-- Button trigger modal -->
+  <!--     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Sign IN
+      </button> -->
+<!-- Modal -->
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->

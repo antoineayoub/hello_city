@@ -23,7 +23,8 @@ tour_tbl_id = []
           first_name: first_name,
           last_name: Faker::Name.last_name,
           email: Faker::Internet.email(first_name),
-          password: password
+          password: password,
+          #user_picture: 'profil_pic_default'
           )
   user.save
   user_tbl_id << user.id
@@ -32,20 +33,54 @@ tour_tbl_id = []
 end
 
 # CREATE TOUR
-10.times do
-  tour = Tour.new(
-          name: Faker::Hipster.sentence(3),
-          description: Faker::Hipster.sentence,
+tour = Tour.new(
+          name: "Paris Eternel - 2H",
+          description: "Pour une première approche de Paris ou une redécouverte de la Capitale Authentique.",
           live: 1,
           guide_level: Faker::Number.between(1, 5),
           price: Faker::Number.between(40, 80),
           user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
-          address: Faker::Address.street_address,
-          language: Faker::Address.country
+          address: "Champ de Mars, 5 Avenue Anatole France, 75007 Paris",
+          language: "French"
           )
-  tour.save
-  tour_tbl_id << tour.id
-end
+tour.save
+tour_tbl_id << tour.id
+tour = Tour.new(
+          name: "Paris Incontournable - 1H",
+          description: "Pour une visite des monuments les plus incontournables de Paris.",
+          live: 1,
+          guide_level: Faker::Number.between(1, 5),
+          price: Faker::Number.between(40, 80),
+          user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
+          address: "Champ de Mars, 5 Avenue Anatole France, 75007 Paris",
+          language: "French"
+          )
+tour.save
+tour_tbl_id << tour.id
+tour = Tour.new(
+          name: "Paris By Night - 1H",
+          description: "Découvrez les mystères de Paris by night.",
+          live: 1,
+          guide_level: Faker::Number.between(1, 5),
+          price: Faker::Number.between(40, 80),
+          user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
+          address: "Champ de Mars, 5 Avenue Anatole France, 75007 Paris",
+          language: "French"
+          )
+tour.save
+tour_tbl_id << tour.id
+tour = Tour.new(
+          name: "Paris Légendaire - 3H",
+          description: "Un Circuit complet avec 2 arrêts",
+          live: 1,
+          guide_level: Faker::Number.between(1, 5),
+          price: Faker::Number.between(40, 80),
+          user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
+          address: "Champ de Mars, 5 Avenue Anatole France, 75007 Paris",
+          language: "French"
+          )
+tour.save
+tour_tbl_id << tour.id
 
 # CREATE BOOKINGS
 
