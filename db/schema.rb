@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216103719) do
+ActiveRecord::Schema.define(version: 20160217134631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20160216103719) do
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
   create_table "bookings", force: :cascade do |t|
-    t.datetime "start_at"
+    t.date     "start_at"
     t.string   "status"
     t.integer  "user_id"
     t.integer  "tour_id"

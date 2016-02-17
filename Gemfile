@@ -25,6 +25,7 @@ gem "coffee-rails"
 
 # for pagination
 gem "kaminari"
+gem 'swipebox'
 
 source "https://rails-assets.org" do
   gem 'rails-assets-bootstrap-datepicker'

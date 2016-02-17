@@ -1,15 +1,17 @@
-<script src="src/js/jquery.swipebox.js"></script>
-
-
-
-
-
 <div class="tour-gallery">
-    <div class="tour-gallery-card">
-  <h3>Tour Photos:</h3>
-        <% @tour.photos.each do |photo| %>
-        <a href="<%= cl_image_path @tour.photos.first&.path %>" class="swipebox" title="">
-            <%= cl_image_tag(photo.path, { size: '250x200', crop: :fill }) %></a>
-        <% end %>
+  <div class="tour-gallery-card">
+    <h3>Tour Photos Gallery</h3>
+      <% @tour.photos.each do |photo| %>
+      <a href="<%= cl_image_path photo&.path %>" class="swipebox" title="">
+          <%= cl_image_tag(photo.path, { size: '250x200', crop: :fill }) %></a>
+      <% end %>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      $('.swipebox').swipebox();
+    })
+  <% end %>
+<% end %>

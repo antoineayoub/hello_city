@@ -3,42 +3,84 @@
 
 <!-- banner -->
 <div class="tour-banner">
-<div class="tour-background" style="height: 600px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
-</div>
-<% if @tour.user_id == current_user.id %>
-  <%= link_to("Edit Profile", edit_tour_path(@tour), html_options = {class: "tour-edit-button btn btn-primary btn-lg"}) %>
-<% end %>
-</div>
-<!-- guide information -->
-<div class="guide-profile">
-  <div class="guide-main-info">
-    <div class="image">
-    <%= cl_image_tag(@tour.user.user_picture&.path, { crop: :fill, class: "avatar-extra-large" }) %>
-    </div>
-    <p><%= @tour.user.first_name %></p>
-  </div>
-  <div class="guide-other-info">
-    <h3> <%= @tour.name %> </h3>
-    <p> <%= @tour.description %> </>
-  </div>
-</div>
+  <div class="tour-background" style="height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
+    <% if @tour.user_id == current_user.id %>
+      <%= link_to(edit_tour_path(@tour), html_options = {class: "tour-edit-button btn btn-primary btn-lg"}) do %>
+        <i class="fa fa-pencil"><span style="padding-left:10px">Edit Tour</span></i>
+      <% end %>
+    <% end %>
 
+    <% unless current_user.id == @tour.user_id %>
+      <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
+    <% end %>
+  </div>
+</div>
+<!-- Photo Gallery -->
+<div class="photo-gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 col-md-offset2">
+        <%= render "shared/tour_show_gallery", tour: @tour %>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- tour summary -->
 <div class="tour-summary">
-  <h3></h3>
+
 </div>
 
+<div class="divider-show"></div>
 
+<div class="guide-profile">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <div class="card-information">
+        <div class="guide-main-info">
+          <div class="image">
+          <%= cl_image_tag(@tour.user.user_picture&.path, { crop: :fill, class: "avatar-extra-large" }) %>
+          </div>
+          <p><%= @tour.user.first_name %></p>
+        </div>
+        <div class="guide-other-info">
+          <h3> <%= @tour.name %> </h3>
+          <p> Level -
+            <% @tour.guide_level.times do %>
+              <i class="fa fa-star"></i>
+            <% end %>
+            <% (5 - @tour.guide_level).times do %>
+              <i class="fa fa-star-o"></i>
+            <% end %>
+          </p>
+          <p> <%= @tour.description %> </>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+      <div class="guide-summary">
+        <div class="card">
+          <h3>About <%= @tour.user.first_name %></h3>
+          <p style="margin-top:30px;"> Family Name - <%= @tour.user.last_name %> </p>
+          <p> Summary - <%= @tour.user.summary %> </p>
+          <%= link_to( @tour.user, html_options = {class: "btn btn-info", style: "margin-top:20px;"} ) do %>
+            <i class="fa fa-user"><span style="margin-left:10px">view full profile</span></i>
+          <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
-<%= render "shared/tour_show_gallery", tour: @tour %>
-
-
-<%= @tour.description %>
-<%= @tour.price %>
-
-<% unless current_user.id == @tour.user_id %>
-  <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
-<% end %>
-
-
+<div class="wrapper-white padded">
+<h3>Other Most Visited Tours:</h3>
+  <div class="container">
+    <div class="row">
+      <% Tour.all.each do |tour| %>
+        <%= render "shared/card_listing", tour: tour %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
