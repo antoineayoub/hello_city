@@ -1,5 +1,19 @@
-<h1>Tours#index</h1>
-<p>Find me in app/views/tours/index.html.erb</p>
+<h1 class="text-center">Soignez vos connaissances avec nos guides</h1>
+
+<div id="map" style="width: 100%; height: 600px;"></div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
+  <% end %>
+<% end %>
 
 <%= link_to("new", new_tour_path) %>
 <%= link_to("my listings", index_user_tours_path(current_user)) %>
