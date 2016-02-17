@@ -33,7 +33,16 @@ end
 
 # for facebookconnect
 gem 'omniauth-facebook'
+
+# for faker
 gem 'faker'
+
+# for gmaps
+gem 'geocoder'
+gem 'gmaps4rails'
+source 'https://rails-assets.org' do
+ gem "rails-assets-underscore"
+end
 
 group :development, :test do
   gem 'binding_of_caller'
