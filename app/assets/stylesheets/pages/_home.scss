@@ -28,6 +28,11 @@
   font-weight: lighter;
 }
 
+/* FA */
+.fa:hover {
+  color: #EA6157;
+  transition: color 0.5s;
+}
 
 
 /* VIDEO */
@@ -98,4 +103,8 @@ video#bgvid {
 
 .fa.fa-angle-down {
   color: white;
+}
+
+#user_input_autocomplete_address {
+  width: 260px;
 }

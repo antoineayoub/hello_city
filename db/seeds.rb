@@ -12,6 +12,7 @@ require 'cloudinary'
 
 Booking.destroy_all
 User.destroy_all
+Tour.destroy_all
 
 # CREATE USER
 user_tbl_id = []
@@ -26,91 +27,62 @@ http://static1.squarespace.com/static/53af1c83e4b0b3e1fc2000bd/53b0a50be4b0d621f
 )
 
 4.times do
-  password = Faker::Internet.password(8)
   first_name = Faker::Name.first_name
   user = User.new(
           first_name: first_name,
           last_name: Faker::Name.last_name,
           email: Faker::Internet.email(first_name),
-          password: password
+          password: '00000000',
+          summary: Faker::Lorem.paragraph
           )
 
   user.picture_url = tbl_pic[cpt]
-
   user.save
   user_tbl_id << user.id
   cpt = cpt + 1
-  puts "Id: #{user.id} Email: #{user.email} Password: #{password}"
+  puts "Id: #{user.id} Email: #{user.email} Password: 00000000"
 end
 
 # CREATE TOUR
-tour = Tour.new(
-          name: "Paris Eternel - 2H",
-          description: "Pour une première approche de Paris ou une redécouverte de la Capitale Authentique.",
-          live: 1,
-          guide_level: Faker::Number.between(1, 5),
-          price: Faker::Number.between(40, 80),
-          user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
-          address: "Champ de Mars, 5 Avenue Anatole France, 75007 Paris",
-          language: "French"
-          )
-tour.photo_urls = %w[http://www.parisclassictour.com/wcms/img/-size-17206-900-600.jpg,
+photo_urls = %w(http://www.parisclassictour.com/wcms/img/-size-17206-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17207-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17208-900-600.jpg,
-  http://www.parisclassictour.com/wcms/img/-size-17209-900-600.jpg]
-tour.save
-tour_tbl_id << tour.id
-tour = Tour.new(
-          name: "Paris Incontournable - 1H",
-          description: "Pour une visite des monuments les plus incontournables de Paris.",
-          live: 1,
-          guide_level: Faker::Number.between(1, 5),
-          price: Faker::Number.between(40, 80),
-          user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
-          address: "35 Rue du Chevalier de la Barre, 75018 Paris",
-          language: "French",
-          )
-tour.photo_urls = %w[http://www.parisclassictour.com/wcms/img/-size-17206-900-600.jpg,
+  http://www.parisclassictour.com/wcms/img/-size-17209-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17210-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17211-900-600.jpg,
-  http://www.parisclassictour.com/wcms/img/-size-17212-900-600.jpg]
-
-tour.save
-tour_tbl_id << tour.id
-tour = Tour.new(
-          name: "Paris By Night - 1H",
-          description: "Découvrez les mystères de Paris by night.",
-          live: 1,
-          guide_level: Faker::Number.between(1, 5),
-          price: Faker::Number.between(40, 80),
-          user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
-          address: "6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004 Paris",
-          language: "French"
-          )
-tour.photo_urls = %w[http://www.parisclassictour.com/wcms/img/-size-17206-900-600.jpg,
+  http://www.parisclassictour.com/wcms/img/-size-17212-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17213-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17214-900-600.jpg,
-  http://www.parisclassictour.com/wcms/img/-size-17215-900-600.jpg]
-
-tour.save
-tour_tbl_id << tour.id
-tour = Tour.new(
-          name: "Paris Légendaire - 3H",
-          description: "Un Circuit complet avec 2 arrêts",
-          live: 1,
-          guide_level: Faker::Number.between(1, 5),
-          price: Faker::Number.between(40, 80),
-          user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
-          address: "82 Boulevard de Clichy, 75018 Paris",
-          language: "French"
-          )
-tour.photo_urls = %w[http://www.parisclassictour.com/wcms/img/-size-17206-900-600.jpg,
+  http://www.parisclassictour.com/wcms/img/-size-17215-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17216-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17217-900-600.jpg,
-  http://www.parisclassictour.com/wcms/img/-size-17218-900-600.jpg]
+  http://www.parisclassictour.com/wcms/img/-size-17218-900-600.jpg,
+  http://www.parisclassictour.com/wcms/img/-size-17219-900-600.jpg,
+  http://www.parisclassictour.com/wcms/img/-size-17220-900-600.jpg,
+  http://www.parisclassictour.com/wcms/img/-size-17221-900-600.jpg,
+  http://www.parisclassictour.com/wcms/img/-size-17222-900-600.jpg)
+tour_names = ["Oh ville Lumière","Paris est magique","Le meilleur de Paris","Le Paris des parisiens","Au fond des parisiennes","Paris by Night","Les plus beaux monuments","Ballade en vélo!","Visite Fabuleuse","Apprendre sur Paris","Visite avec un parisien"]
+tour_addresses = ["place de la Bastille Paris","place Vendôme Paris","place de la Concorde Paris","square des Innocents Paris","place du trocadero paris","Hôtel Matignon Paris","Palais de la Légion d'honneur Paris","Palais du Luxembourg Paris","Hôtel de Sens Paris","Palais Brongniart Paris","Temple protestant de l'Oratoire du Louvre Paris","Grande Mosquée de Paris Paris","Église Saint-Eustache Paris","Église Saint-Louis-des-Invalides Paris","Basilique du Sacré-Cœur de Montmartre Paris"]
 
-tour.save
-tour_tbl_id << tour.id
+20.times do
+  tour = Tour.new(
+            name: tour_names.sample,
+            description: Faker::Lorem.paragraph,
+            live: 1,
+            guide_level: Faker::Number.between(1, 5),
+            price: Faker::Number.between(40, 80),
+            user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
+            address: tour_addresses.sample,
+            language: ["French","English","Chinese","Spanish"].sample,
+            tour_duration: (1..12).to_a.sample,
+            provides_food: [true, false].sample,
+            provides_car: [true, false].sample,
+            provides_ticket: [true, false].sample
+            )
+  tour.photo_urls = photo_urls.sample(3)
+  tour.save
+  tour_tbl_id << tour.id
+end
 
 # CREATE BOOKINGS
 
@@ -121,7 +93,8 @@ tour_tbl_id << tour.id
     status: 'pending',
     user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
     tour_id: tour_id,
-    price: Tour.find(tour_id).price
+    price: Tour.find(tour_id).price,
+    nb_people: (1..10).to_a.sample
     )
   booking.save
 end
