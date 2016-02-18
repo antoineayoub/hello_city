@@ -7,6 +7,7 @@ class ToursController < ApplicationController
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
+    @skip_footer = true
   end
 
   def index_user
