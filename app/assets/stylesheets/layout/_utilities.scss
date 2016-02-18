@@ -24,6 +24,46 @@
   background: #3b5998;
 }
 
+//Button
+
+.picto {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.picto-danger {
+  color: $red;
+}
+
+.picto-success {
+  color: $green;
+}
+
+.flag{
+  border-radius: 1px;
+  color:white;
+  font-weight:bolder;
+  font-size: 10px;
+  width: 60px;
+  text-align: center;
+}
+.flag-validated{
+  background-color: $green;
+}
+.flag-pending{
+  background-color: $orange;
+}
+.flag-cancelled{
+  background-color: $red;
+}
+
+.fa-true{
+  color: $green;
+}
+.fa-false{
+  color: $red;
+}
+
 .left-column {
   height: 645px;
   overflow-y: scroll;
@@ -31,10 +71,8 @@
 
 
 // for maps
-html,body {
-  margin:0;
-  padding:0;
-  height:100%;
-}
-
-
+// html,body {
+//   margin:0;
+//   padding:0;
+//   height:100%;
+// }

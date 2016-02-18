@@ -1,0 +1,132 @@
+
+.card-small {
+  height: 60px;
+  background-size: cover !important;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 2px;
+  border-bottom: 1px solid rgb(240,240,240)
+}
+.card-small-title {
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.card-small-description {
+  position: absolute;
+  top: 15px;
+  left: 100px;
+}
+
+.card-small-description h2 {
+  font-size: 12px;
+}
+.card-small-description p {
+  font-size: 10px;
+}
+
+.card-small-user {
+  position: absolute;
+  left: 15px;
+  top: 20px;
+}
+
+.card-small-danger{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 35px;
+  border-radius: 0 2px 2px 0;
+  font-size:20px;
+}
+.card-small-danger:hover{
+  color:white;
+  background-color: $red;
+}
+
+.card-small-success{
+  position: absolute;
+  right: 35px;
+  top: 0;
+  height: 100%;
+  width: 35px;
+  border-radius: 0 2px 2px 0;
+  font-size:20px;
+}
+.card-small-success:hover{
+  color:white;
+  background-color: $green;
+}
+.smaller-link-92 {
+  width: 92%;
+}
+
+.smaller-link-84 {
+  width: 84%;
+}
+
+.list-visit{
+  border:1px solid $gray-lighter;
+  margin-bottom: 10px;
+  position:relative;
+  height:100px;
+}
+.list-visit-pic{
+  height:80px;
+  position:absolute;
+  top:10px;
+  left:20px;
+}
+
+.list-visit-title{
+  position:absolute;
+  top:10px;
+  left: 190px;
+  font-weight: bolder;
+}
+.list-visit-description{
+  position:absolute;
+  top:30px;
+  left: 190px;
+}
+.list-visit-title h2 {
+  font-size: 12px;
+}
+.list-visit-title p {
+  font-size: 10px;
+}
+
+.list-visit-choice{
+  position:absolute;
+  width:120px;
+  top: 0;
+  bottom: 0;
+  right:40px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.list-visit-choice select{
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #565a5c;
+}
+
+.list-visit-choice .form-group {
+  padding-left: 20px;
+  margin:0;
+}
+
+.no-margin-top{
+  margin-top: 0px;
+}
+
+.wrapper{
+  margin-top:20px;
+}

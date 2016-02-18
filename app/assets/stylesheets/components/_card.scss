@@ -51,11 +51,12 @@
 }
 
 .card-empty{
+  height:150px;
   background-color: $gray-lighter;
   color: $gray-light;
   display:flex;
   align-items: center;
   justify-content: center;
-  height:150px;
 }
+
 

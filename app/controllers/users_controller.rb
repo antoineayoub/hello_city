@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def show
+    @not_cancelled_bookings = Booking.where("status <> 'cancelled' AND user_id=#{params[:id]}")
   end
 
   def edit
@@ -16,6 +17,8 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+
 
   private
 
