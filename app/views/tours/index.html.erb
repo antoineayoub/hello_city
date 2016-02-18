@@ -1,7 +1,40 @@
 
 <h1 class="text-center">Soignez vos connaissances avec nos guides</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <% @tours.each do |tour| %>
+        <div class="col-xs-12 col-sm-6">
+          <%= render "shared/card_listing", tour: tour %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div id="map" class="left-column"></div>
+    </div>
+  </div>
+</div>
 
-<div id="map" style="width: 100%; height: 400px;"></div>
+<!-- <div class="wrapper-grey">
+  <div class="text-center padded" id="about">
+     <div class="container">
+       <div class="row">
+         <div class="col-xs-12 col-sm-6 col-md-4">
+           <%#= image_tag("globe.png", alt: "globe", class: "xsmall_image" ) %>
+           <h3>Découvrir les villes</h3>
+         </div>
+         <div class="col-xs-12 col-sm-6 col-md-4">
+           <%#= image_tag("student.png", alt: "student", class: "xsmall_image" ) %>
+           <h3>Les guides les plus intéréssants</h3>
+         </div>
+         <div class="col-xs-12 col-sm-6 col-md-4">
+           <%#= image_tag("euro.png", alt: "euro", class: "xsmall_image" ) %>
+           <h3>Les meilleurs tarifs</h3>
+         </div>
+       </div>
+     </div>
+  </div>
+</div> -->
 
 <%= link_to("new", new_tour_path) %>
 <% unless  current_user.nil? %>
@@ -9,42 +42,11 @@
   <%= current_user.id %>
 <% end %>
 
-<div class="wrapper-white padded">
- <div class="container">
-
-   <% @tours.each do |tour| %>
-       <%= render "shared/card_listing", tour: tour %>
-   <% end %>
- </div>
-</div>
-
-<div class="wrapper-grey">
-<div class="text-center padded" id="about">
- <div class="container">
-   <div class="row">
-     <div class="col-xs-12 col-sm-6 col-md-4">
-       <%= image_tag("globe.png", alt: "globe", class: "xsmall_image" ) %>
-       <h3>Découvrir les villes</h3>
-     </div>
-     <div class="col-xs-12 col-sm-6 col-md-4">
-       <%= image_tag("student.png", alt: "student", class: "xsmall_image" ) %>
-       <h3>Les guides les plus intéréssants</h3>
-     </div>
-     <div class="col-xs-12 col-sm-6 col-md-4">
-       <%= image_tag("euro.png", alt: "euro", class: "xsmall_image" ) %>
-       <h3>Les meilleurs tarifs</h3>
-
-     </div>
-   </div>
- </div>
-</div>
-</div>
-
 <% content_for(:after_js) do %>
  <%= javascript_tag do %>
    $(document).on('ready', function() {
      handler = Gmaps.build('Google');
-     handler.buildMap({ internal: { id: 'map' } }, function(){
+     handler.buildMap({ provider: {scrollwheel: false}, internal: { id: 'map' } }, function(){
        markers = handler.addMarkers(<%= raw @markers.to_json %>);
        handler.bounds.extendWith(markers);
        handler.fitMapToBounds();
