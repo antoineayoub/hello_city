@@ -35,6 +35,10 @@
   color: $red;
 }
 
+.picto-success {
+  color: $green;
+}
+
 .flag{
   border-radius: 1px;
   color:white;
@@ -51,4 +55,11 @@
 }
 .flag-cancelled{
   background-color: $red;
+}
+
+.fa-true{
+  color: $green;
+}
+.fa-false{
+  color: $red;
 }

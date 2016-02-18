@@ -39,6 +39,15 @@ class ToursController < ApplicationController
     end
   end
 
+  def update_live
+    @tour = Tour.find(params[:id])
+    if @tour.update(tour_params)
+      redirect_to user_path(current_user) # we redirect to his announce, well presented
+    else
+      render "users/#{current_user}"
+    end
+  end
+
   def show
     @tour = Tour.find(params[:id])
     @booking = Booking.new
