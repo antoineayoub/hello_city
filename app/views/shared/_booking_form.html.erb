@@ -1,14 +1,16 @@
 <div class="decide-booking-card">
   <div class="booking-title">
-    <h3>Book Now!</h3>
-  </div>
-  <div class="booking-title">
-    <h3>Price: <%= @tour.price.to_i %>€</h3>
+    <p>Book Now!</p>
   </div>
   <div class="form-booking">
     <%= simple_form_for [locals[:tour], locals[:booking]], method: 'post' do |f| %>
-      <%= f.input :start_at, :as => :hidden, input_html: {class: 'datepicker'} %>
-      <%= f.button :submit, 'Confirm Booking!', class: 'book-now-button btn btn-success'  %>
+      <%= f.input :start_at, label: 'Choose a Date', as: :string, placeholder: 'select date', required: false, input_html: {class: 'datepicker'} %>
+      <%= f.input :nb_people, collection: 1..10, prompt: "Number of Persons" %>
+      <%= f.input :price, disabled: true, label: "Total Price", as: :string, placeholder: "#{@tour.price.to_i} €"  %>
+      <div id="computation"></div>
+      <%= button_tag( type: 'submit', class: 'book-now-button btn btn-success')  do %>
+        <i class="fa fa-sign-in"></i> <span style="padding-left:5px;">Confirm Booking!</span>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -22,9 +24,29 @@
       clearBtn: true,
       daysOfWeekHighlighted: "0,6",
       todayHighlight: true,
-      orientation: "top auto"
+      orientation: "bottom auto"
     });
-    $('.datepicker').data('datepicker').hide = function () {};
-    $('.datepicker').datepicker('show');
+
+    $('#booking_nb_people').on('click', function(){
+      var base_price = <%= @tour.price.to_i %>;
+
+      var people = parseInt($( "#booking_nb_people option:selected" ).val());
+      people = _.isNaN(people) ? 1 : people;
+
+      if (people > 1) {
+        var comp = "(" + base_price + "€ x " + people + " people)"
+        var finalPrice = base_price * people + " €";
+        $('#booking_price').attr('placeholder', finalPrice);
+        $('#computation').html(comp);
+      } else {
+        var finalPrice = base_price * people + " €";
+        $('#booking_price').attr('placeholder', finalPrice);
+        $('#computation').html("");
+      }
+
+    })
+
   <% end %>
+
+
 <% end %>

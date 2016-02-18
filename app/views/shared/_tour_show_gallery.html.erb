@@ -1,9 +1,18 @@
-<div class="tour-gallery">
-  <div class="tour-gallery-card">
+<div class="">
+  <div class="tour-gallery">
     <h3>Tour Photos Gallery</h3>
-      <% @tour.photos.each do |photo| %>
-      <a href="<%= cl_image_path photo&.path %>" class="swipebox" title="">
-          <%= cl_image_tag(photo.path, { size: '250x200', crop: :fill }) %></a>
+      <% @tour.photos.each_with_index do |photo, index| %>
+        <% if index < 2 %>
+          <a href="<%= cl_image_path photo&.path %>" class="swipebox" title="">
+              <%= cl_image_tag(photo.path, { size: '200x150', crop: :fill }) %></a>
+        <% elsif index == 2 %>
+          <a href="<%= cl_image_path photo&.path %>" class="swipebox" title="">
+            <%= cl_image_tag(photo.path, { size: '200x150', crop: :fill }) %>
+          </a>
+        <% else %>
+          <a href="<%= cl_image_path photo&.path %>" class="swipebox" style="display:none;" title="">
+              <%= cl_image_tag(photo.path, { size: '200x150', crop: :fill }) %></a>
+        <% end %>
       <% end %>
   </div>
 </div>
