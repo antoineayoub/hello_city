@@ -37,8 +37,10 @@
 </div> -->
 
 <%= link_to("new", new_tour_path) %>
-<%= link_to("my listings", index_user_tours_path(current_user)) %>
-<%= current_user.id %>
+<% unless  current_user.nil? %>
+  <%= link_to("my listings", index_user_tours_path(current_user)) %>
+  <%= current_user.id %>
+<% end %>
 
 <% content_for(:after_js) do %>
  <%= javascript_tag do %>

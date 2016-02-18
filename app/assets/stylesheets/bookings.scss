@@ -2,39 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .decide-booking-card {
-    height: 500px;
+    height: 350px;
     width: 316px;
-    padding: 5px;
+    padding: 0px !important;
     margin-left: 30px;
-    background-color: #F3F3F3;
+    background-color: #FDFDFD;
     border: 1px solid #FFFFFF;
     border-radius: 3px;
     box-shadow: 1px 1px 2px #DFDDDD;
     position: relative;
-    right: -32%;
-    top: 253px;
-}
-.datepicker {
-  border-radius: 4px;
-  direction: ltr;
-  margin-left: 13px;
-  box-shadow: none;
-  margin-top: 32px;
-  top: 480px !important;
-  left: 76% !important;
+    right: -23%;
+    top: 376px;
 }
 .booking-title {
-  padding: 0px 10px;
-  border-bottom: 1px dotted grey;
-  margin-bottom: 11px;
+  background-color: $gray-dark;
   text-align: center;
-  color: dark-grey;
+  color: white;
+  border-radius: 5px 5px 0px 0px;
+  padding: 5px 0px
+}
+.booking-title p {
+  margin: 0px
 }
 .form-booking {
   display: flex;
   justify-content: center;
+  padding-top: 10px;
 }
 .book-now-button {
   margin-bottom: 10px;
   padding: 5px 20px;
+}
+.form-booking .btn {
+  width: 100%;
+}
+.booking_price.form-group {
+  margin-bottom: 0px !important;
+}
+#computation {
+  font-size:12px;
+  color: grey;
+  height:25px;
+  max-width:100px;
+  margin-left: 63px;
+}
+#booking_price {
+  color: blue;
+  font-weight: bold;
+  background-color: white;
 }

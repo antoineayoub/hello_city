@@ -4,14 +4,12 @@
 <!-- banner -->
 <div class="tour-banner">
   <div class="tour-background" style="height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
-    <% if @tour.user_id == current_user.id %>
-      <%= link_to(edit_tour_path(@tour), html_options = {class: "tour-edit-button btn btn-primary btn-lg"}) do %>
-        <i class="fa fa-pencil"><span style="padding-left:10px">Edit Tour</span></i>
+    <% if current_user.nil? || @tour.user_id.nil? %>
+        <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
+      <% else %>
+      <% unless current_user.id == @tour.user_id %>
+        <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
       <% end %>
-    <% end %>
-
-    <% unless current_user.id == @tour.user_id %>
-      <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
     <% end %>
   </div>
 </div>
@@ -19,68 +17,122 @@
 <div class="photo-gallery">
   <div class="container">
     <div class="row">
-      <div class="col-md-5 col-md-offset2">
+      <div class="col-md-8">
         <%= render "shared/tour_show_gallery", tour: @tour %>
       </div>
-    </div>
-  </div>
-</div>
-<!-- tour summary -->
-<div class="tour-summary">
-
-</div>
-
-<div class="divider-show"></div>
-
-<div class="guide-profile">
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-1">
-      <div class="card-information">
-        <div class="guide-main-info">
-          <div class="image">
-          <%= cl_image_tag(@tour.user.picture.path, { crop: :fill, class: "avatar-extra-large" }) %>
-          </div>
-          <p><%= @tour.user.first_name %></p>
-        </div>
-        <div class="guide-other-info">
-          <h3> <%= @tour.name %> </h3>
-          <p> Level -
-            <% @tour.guide_level.times do %>
-              <i class="fa fa-star"></i>
+      <div class="col-md-4">
+          <% unless current_user.nil? || @tour.user_id.nil? %>
+            <% if @tour.user_id == current_user.id  %>
+              <%= link_to(edit_tour_path(@tour), html_options = {class: "tour-edit-button btn btn-primary btn-lg"}) do %>
+                <i class="fa fa-pencil"><span style="padding-left:10px">Edit Tour</span></i>
+              <% end %>
             <% end %>
-            <% (5 - @tour.guide_level).times do %>
-              <i class="fa fa-star-o"></i>
-            <% end %>
-          </p>
-          <p> <%= @tour.description %> </>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-md-offset-1">
-      <div class="guide-summary">
-        <div class="card">
-          <h3>About <%= @tour.user.first_name %></h3>
-          <p style="margin-top:30px;"> Family Name - <%= @tour.user.last_name %> </p>
-          <p> Summary - <%= @tour.user.summary %> </p>
-          <%= link_to( @tour.user, html_options = {class: "btn btn-info", style: "margin-top:20px;"} ) do %>
-            <i class="fa fa-user"><span style="margin-left:10px">view full profile</span></i>
           <% end %>
       </div>
+    </div>
+  </div>
+</div>
+<div class="guide-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="card-information">
+          <div class="guide-main-info">
+            <div class="image">
+            <%= cl_image_tag(@tour.user.picture.path, { crop: :fill, class: "avatar-extra-large" }) %>
+            </div>
+            <p><%= @tour.user.first_name %></p>
+          </div>
+          <div class="guide-other-info">
+            <p style="font-weight: 800;"> <%= @tour.name %> </p>
+            <p style="font-size: 14px;"> Tour expertise
+              <span style="margin-left:10px;">
+                <% @tour.guide_level.times do %>
+                  <i class="fa fa-star" style="color:green;"></i>
+                <% end %>
+              </span>
+              <% (5 - @tour.guide_level).times do %>
+                <i class="fa fa-star-o"></i>
+              <% end %>
+            </p>
+            <p style="font-size: 14px; font-style:italic;"> <%= @tour.description %> <p/>
+          </div>
+          <div class="list-of-spec">
+                  <ul class="list-unstyled provide-list" style="text-align:left;">
+                    <li data-toggle="tooltip" data-placement="left" title="Tour Duration">
+                      <i class="fa fa-clock-o"></i><span><%= @tour.tour_duration.to_i %> hrs</span>
+                    </li>
+                    <li data-toggle="tooltip" data-placement="left" title="Food Provided">
+                      <i class="fa fa-cutlery"></i><span><%= @tour.provides_food == true ? "food provided" : "no" %></span>
+                    </li>
+                    <li data-toggle="tooltip" data-placement="left" title="Car Provided">
+                      <i class="fa fa-car"></i><span><%= @tour.provides_car == true ? "car provided" : "no"  %></span>
+                    </li>
+                    <li data-toggle="tooltip" data-placement="left" title="Tickets Provided">
+                      <i class="fa fa-ticket"></i><span><%= @tour.provides_ticket == true ? "tickets provided" : "no"  %></span>
+                    </li>
+                    <li data-toggle="tooltip" data-placement="left" title="Language">
+                      <i class="fa fa-comment"></i><span><%= @tour.language %></span>
+                    </li>
+                  </ul>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
 </div>
-</div>
 
-<div class="wrapper-white padded">
-<h3>Other Most Visited Tours:</h3>
-  <div class="container">
-    <div class="row">
-      <% Tour.all.each do |tour| %>
-        <%= render "shared/card_listing", tour: tour %>
-      <% end %>
+    <div class="information-map">
+<div class="container">
+  <div class="row">
+      <div class="col-md-6">
+        <div id="map"style="height:300px;"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="more-about">
+            <h3>More about your guide!</h3>
+            <p style="font-style:italic;"> <%= @tour.user.summary %> </p>
+            <%= link_to( user_path(@tour.user), html_options = {class: "btn btn-primary", style: "margin-top:20px;"} ) do %>
+              <i class="fa fa-user"><span style="margin-left:10px">view this guide</span></i>
+            <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+
+<div class="suggestions">
+  <div class="container">
+    <div class="row">
+      <div class="wrapper-white padded">
+      <h3>TOP 3 Most Visited Tours</h3>
+        <div class="container">
+          <div class="row">
+            <% Tour.all.sample(3).each do |tour| %>
+              <%= render "shared/card_listing", tour: tour %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% content_for(:after_js) do %>
+ <%= javascript_tag do %>
+   $(document).on('ready', function() {
+     handler = Gmaps.build('Google');
+     handler.buildMap({ provider: { scrollwheel: false }, internal: { id: 'map' } }, function(){
+       markers = handler.addMarkers(<%= raw @markers.to_json %>);
+       handler.bounds.extendWith(markers);
+       handler.fitMapToBounds();
+        handler.getMap().setZoom(14);
+        handler.getMap().disableScrollWheelZoom();
+
+     });
+   })
+ <% end %>
+<% end %>

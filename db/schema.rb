@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217181003) do
+ActiveRecord::Schema.define(version: 20160218143126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160217181003) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal  "price"
+    t.integer  "nb_people"
   end
 
   add_index "bookings", ["tour_id"], name: "index_bookings_on_tour_id", using: :btree
@@ -54,10 +55,14 @@ ActiveRecord::Schema.define(version: 20160217181003) do
     t.string   "address"
     t.decimal  "price"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "provides_car"
+    t.boolean  "provides_ticket"
+    t.boolean  "provides_food"
+    t.integer  "tour_duration"
   end
 
   add_index "tours", ["user_id"], name: "index_tours_on_user_id", using: :btree
