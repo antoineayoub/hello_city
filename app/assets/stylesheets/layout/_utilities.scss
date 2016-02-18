@@ -23,3 +23,18 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+
+.left-column {
+  height: 645px;
+  overflow-y: scroll;
+}
+
+
+// for maps
+html,body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
+

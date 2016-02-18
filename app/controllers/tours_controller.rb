@@ -1,11 +1,11 @@
 class ToursController < ApplicationController
 
   def index
-    @tours = Tour.all
+    search
     @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
       marker.lat tour.latitude
       marker.lng tour.longitude
-   end
+    end
   end
 
   def index_user
@@ -42,6 +42,14 @@ class ToursController < ApplicationController
   def show
     @tour = Tour.find(params[:id])
     @booking = Booking.new
+  end
+
+  def search
+    if params[:address].present?
+      @tours = Tour.near(params[:address], 1)
+    else
+      @tours = Tour.all
+    end
   end
 
   private

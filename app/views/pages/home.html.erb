@@ -7,8 +7,8 @@
     <p>La meilleure façon de découvrir et comprendre une ville</p>
   </div>
   <div id="wrapper-form">
-    <%= form_tag(tours_path, :method => "get", class: "form-inline searchbar") do %>
-       <%= text_field_tag :address, params[:address], class: "form-control fields", placeholder: 'Où cherchez-vous une visite ?' %>
+    <%= form_tag(tours_path, :method => "get", class: "form-inline search-bar") do %>
+       <%= text_field_tag :address, params[:address], class: "form-control fields search-bar ", id: "user_input_autocomplete_address", placeholder: 'Où cherchez-vous une visite ?' %>
        <%= submit_tag "Chercher", class: "btn btn-danger" %>
     <% end %>
   </div>
@@ -23,17 +23,17 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <%= image_tag("globe.png", alt: "globe", class: "small_image" ) %>
+        <i class="fa fa-globe fa-4x"></i>
         <h2>Découvrir les villes</h2>
         <p>Tous les lieux culturels et mythiques</p>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <%= image_tag("student.png", alt: "student", class: "small_image" ) %>
+        <i class="fa fa-graduation-cap fa-4x"></i>
         <h2>Les guides les plus intéréssants</h2>
         <p>Choississez parmi des milliers de guides professionnels</p>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <%= image_tag("euro.png", alt: "euro", class: "small_image" ) %>
+        <i class="fa fa-euro fa-4x"></i>
         <h2>Les meilleurs tarifs</h2>
         <p>Le meilleur prix pour le meilleur service</p>
       </div>
@@ -51,3 +51,5 @@
       </div>
   </div>
 </div>
+
+
