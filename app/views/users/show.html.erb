@@ -28,17 +28,27 @@
                 <i>Aucune Commande</i>
               </div>
             <% else %>
-              <ul>
+            <ul class="list-unstyled">
               <% current_user.bookings.each do |booking| %>
-                <%# render "shared/card_action", booking: booking %>
-                <%= form_for(booking) do |f|%>
-                  <%= f.hidden_field :status, :value => "cancelled" %>
-                  <%= f.button :submit, :class => 'btn btn-primary', data: { confirm: 'Are your Sure ?' } do  %>
-                    <i class="fa fa-times-circle"></i>
-                  <% end %>
-                <% end %>
+                <li>
+                  <div class="card-small">
+                    <div class="card-small-title"><%= booking.tour.name %></div>
+                    <%= cl_image_tag booking.tour.user.picture.path, {class: "card-small-user avatar", id: "avatar_user"}%>
+                    <div class="card-small-description">
+                      <h2>avec <%= booking.tour.user.first_name %> le <%= booking.start_at %></h2>
+                    </div>
+                    <%= form_for(booking) do |f|%>
+                      <%= f.hidden_field :status, :value => "cancelled" %>
+                      <%= f.button :submit, class: 'btn picto picto-danger card-small-action', data: { confirm: 'Are your Sure ?' } do  %>
+                        <i class="fa fa-times-circle"></i>
+                      <% end %>
+                    <% end %>
+                    <div class="flag flag-<%= booking.status %> "><%= booking.status %></div>
+                    <%= link_to "", tour_path(booking.tour), class: "card-link smaller-link" %>
+                  </div>
+                </li>
               <% end %>
-              </ul>
+            </ul>
             <% end %>
           </div>
           <div class="col-xs-12 col-sm-6">
@@ -68,9 +78,23 @@
             </div>
           <% end %>
         <% else %>
-          <% current_user.tours.each do |tour| %>
-            <%= render "shared/card", tour: tour %>
-          <% end %>
+          <ul class="list-unstyled">
+            <% current_user.tours.each do |tour| %>
+              <li>
+                <%# render "shared/card", tour: tour %>
+                <div class="list-visit">
+                  <%= cl_image_tag tour.photos.first.path, {class: "list-visit-pic"}%>
+                  <div class="list-visit-title">
+                    <%= tour.name %>
+                  </div>
+                  <div class="list-visit-description">
+                    <h2></h2>
+                    <p> Vous avez actuellement <b><%= current_user.bookings %> reservations</b> pour cette visite</p>
+                  </div>
+                </div>
+               </li>
+            <% end %>
+          </ul>
         <% end %>
       </div>
     </div>

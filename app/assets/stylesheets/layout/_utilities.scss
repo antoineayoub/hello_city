@@ -23,3 +23,32 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+
+//Button
+
+.picto {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.picto-danger {
+  color: $red;
+}
+
+.flag{
+  border-radius: 1px;
+  color:white;
+  font-weight:bolder;
+  font-size: 10px;
+  width: 60px;
+  text-align: center;
+}
+.flag-validated{
+  background-color: $green;
+}
+.flag-pending{
+  background-color: $orange;
+}
+.flag-cancelled{
+  background-color: $red;
+}

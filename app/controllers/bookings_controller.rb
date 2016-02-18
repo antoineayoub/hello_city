@@ -12,7 +12,10 @@ class BookingsController < ApplicationController
       redirect_to tour_path(@tour) # should flash error message
     end
   end
-
+  def booking_not_cancelled
+    @bookings = Booking.where("status <> 'cancelled'")
+    raise
+  end
   def update
     @booking = Booking.find(params[:id])
     if @booking.update(booking_params)
