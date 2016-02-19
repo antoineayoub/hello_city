@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="panel panel-default">
         <h1 class="panel-heading">Edit my profile</h1>
         <div class="panel-body">
@@ -9,11 +9,19 @@
             <%= f.error_notification %>
 
             <div class="form-inputs">
-              <%= f.input :first_name, required: true, autofocus: true%>
-              <%= f.input :last_name, required: true, autofocus: true %>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6">
+                 <%= f.input :first_name, required: true, autofocus: true%>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <%= f.input :last_name, required: true, autofocus: true %>
+              </div>
+            </div>
+
+
               <%= f.input :summary, required: false, autofocus: true %>
               <%= f.input :phone_number, required: false, autofocus: true %>
-              <%= f.input :birth_date,required: false, autofocus: true %>
+              <%= f.input :birth_date, required: false, autofocus: true, start_year: Date.today.year - 110, end_year: Date.today.year - 18, default: Date.today - 20.year %>
               <%= f.input :email, required: true, autofocus: true %>
               <%= f.input :picture, as: :attachinary, class: "list-unstyled" %>
             </div>

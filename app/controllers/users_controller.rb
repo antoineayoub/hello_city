@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    count_pending
   end
 
   def update
@@ -18,8 +19,6 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
-
 
   private
 

@@ -49,11 +49,11 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: white;
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $red;
   text-decoration: none;
 }
 
@@ -142,4 +142,16 @@
 .navbar-user-name{
   font-size: 12px;
   color:white;
+}
+
+.nav-tour-btn {
+  border-radius: 2px;
+  background: none;
+  border: 1px solid white;
+}
+
+.nav-tour-btn:hover {
+  background: none;
+  color: $red;
+  border: 1px solid white;
 }

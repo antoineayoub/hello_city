@@ -17,7 +17,6 @@
     <% end %>
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-
       <!-- Notification -->
       <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
@@ -69,7 +68,7 @@
     <% end %>
 
     <!-- Button (call-to-action) -->
-    <%# link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <%= link_to t(".top_call_to_action", default: "Créer un tour"), new_tour_path, class: "navbar-wagon-item navbar-wagon-button btn nav-tour-btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->

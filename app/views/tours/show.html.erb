@@ -126,12 +126,11 @@
  <%= javascript_tag do %>
    $(document).on('ready', function() {
      handler = Gmaps.build('Google');
-     handler.buildMap({ provider: { scrollwheel: false }, internal: { id: 'map' } }, function(){
+     handler.buildMap({ provider: { scrollwheel: false }, internal: { id: 'map' }, provider: { scrollwheel: false } }, function(){
        markers = handler.addMarkers(<%= raw @markers.to_json %>);
        handler.bounds.extendWith(markers);
        handler.fitMapToBounds();
-        handler.getMap().setZoom(14);
-        handler.getMap().disableScrollWheelZoom();
+       handler.getMap().setZoom(14);
 
      });
    })

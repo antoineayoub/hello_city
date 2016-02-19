@@ -78,8 +78,33 @@ video#bgvid {
  }
 
 
-.searchbar {
-  //display: flex;
+.custom-bar {
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  color:white;
+  font-size: 20px;
+}
+
+.custom-bar:focus{
+  background: none;
+  box-shadow: none;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $red;
+}
+
+.btn-search-home{
+  background: none;
+  color:white;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 20px;
+}
+.btn-search-home:hover{
+  color: $red;
 }
 
 #wrapper-form{
@@ -106,5 +131,5 @@ video#bgvid {
 }
 
 #user_input_autocomplete_address {
-  width: 260px;
+  width: 350px;
 }

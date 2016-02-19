@@ -2,11 +2,7 @@ class ToursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    search
-    @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
-      marker.lat tour.latitude
-      marker.lng tour.longitude
-    end
+
     @skip_footer = true
 
     params_hash = {
@@ -32,11 +28,20 @@ class ToursController < ApplicationController
       search_query << " AND (#{key.to_s} = #{params_hash[key]}) " unless params_hash[key] = "" || params_hash[key] = nil
     end
 
-    if  Tour.search_for(search_query).count >= 0
+    if Tour.search_for(search_query).count >= 0
       @tours = Tour.search_for(search_query)
     else
       @tours = Tour.all
     end
+
+    @tours = search(@tours)
+
+    @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
+      marker.lat tour.latitude
+      marker.lng tour.longitude
+    end
+
+    count_pending
 end
 
 
@@ -46,6 +51,7 @@ end
 
   def new
     @tour = Tour.new
+    count_pending
   end
 
   def create
@@ -60,6 +66,7 @@ end
 
   def edit
     @tour = Tour.find(params[:id])
+    count_pending
   end
 
   def update
@@ -88,14 +95,14 @@ end
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
+    count_pending
   end
 
-  def search
+  def search(tours)
     if params[:address].present?
-      @tours = Tour.near(params[:address], 1)
-    else
-      @tours = Tour.all
+      tours = tours.near(params[:address], 1)
     end
+    tours
   end
 
   private
