@@ -45,9 +45,12 @@
 
 .nav-signin-closed:hover{
   background: $red;
-  color: white;
   font-weight: bolder;
+  cursor: pointer;
   border:1px solid $red;
+  div a {
+    color: white;
+  }
 
 }
 .nav-signin-closed a {
