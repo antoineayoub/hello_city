@@ -1,3 +1,30 @@
 @import "utilities";
 @import "footer";
 @import "navbar";
+
+
+.full-gmap {
+  height: 88vh !important;
+}
+.index-tour-list {
+  height: 88vh;
+  overflow-y: scroll;
+}
+.card-reviewed h3 {
+  font-size: 20px;
+}
+.card-reviewed .card-category {
+    background-color: $gray-light;
+    padding-bottom: 0px !important;
+    margin-left: -10px;
+    padding-right: 19px;
+    border-radius: 0px 3px 3px 0px;
+}
+.card-reviewed .card-category p {
+margin: 0 0 2px;
+    padding-left: 17px;
+}
+.map-wrapper {
+  height: 100%;
+  width: 100%;
+}
