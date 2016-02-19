@@ -8,6 +8,7 @@ class ToursController < ApplicationController
       marker.lng tour.longitude
     end
     count_pending
+    @skip_footer = true
   end
 
   def index_user

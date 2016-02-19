@@ -1,20 +1,28 @@
 
-<h1 class="text-center">Soignez vos connaissances avec nos guides</h1>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
+      <div class="index-tour-list">
+      <div class="index-header">
+        <h3 class="text-center">Choisissez un tour!</h3>
+      </div>
+      <div class="index-filters">
+
+      </div>
       <% @tours.each do |tour| %>
         <div class="col-xs-12 col-sm-6">
           <%= render "shared/card_listing", tour: tour %>
         </div>
       <% end %>
+      </div>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <div id="map" class="left-column"></div>
+    <div class="full-gmap">
+      <div id="map" class="map-wrapper"></div>
+      </div>
     </div>
-  </div>
 </div>
-
+</div>
 <!-- <div class="wrapper-grey">
   <div class="text-center padded" id="about">
      <div class="container">
