@@ -2,13 +2,14 @@ class ToursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    search
+  search
     @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
     count_pending
     @skip_footer = true
+    @tours = @tours.order(:price).page
   end
 
   def index_user
