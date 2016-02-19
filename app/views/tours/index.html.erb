@@ -7,13 +7,32 @@
         <h3 class="text-center">Choisissez un tour!</h3>
       </div>
       <div class="index-filters">
-
+        <ul class="list-inline">
+          <li><span>Choose Max Price </span></li>
+          <b><%= Tour.minimum(:price).to_i %>€</b>
+          <input id="price-limi"t type="text" class="" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/><b><%= Tour.maximum(:price).to_i %>€</b>
+        </ul>
+      </div>
+      <div class="index-options">
+        <ul class="list-inline">
+          <div class="btn-group" data-toggle="buttons">
+            <form method="post" action="/controller/index" class="btn option_button">
+              <i class="fa fa-cutlery"></i>
+              <input type="checkbox" autocomplete="off"> Price Includes Food
+            </form>
+            <form method="post" action="/controller/index" class="btn option_button">
+              <i class="fa fa-ticket"></i>
+              <input type="checkbox" autocomplete="off"> Price Includes Tickets
+            </form>
+          </div>
       </div>
       <% @tours.each do |tour| %>
         <div class="col-xs-12 col-sm-6">
           <%= render "shared/card_listing", tour: tour %>
         </div>
       <% end %>
+      <%= paginate @tours %>
+      <div class="border-bottom-index"></div>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6">
@@ -23,32 +42,6 @@
     </div>
 </div>
 </div>
-<!-- <div class="wrapper-grey">
-  <div class="text-center padded" id="about">
-     <div class="container">
-       <div class="row">
-         <div class="col-xs-12 col-sm-6 col-md-4">
-           <%#= image_tag("globe.png", alt: "globe", class: "xsmall_image" ) %>
-           <h3>Découvrir les villes</h3>
-         </div>
-         <div class="col-xs-12 col-sm-6 col-md-4">
-           <%#= image_tag("student.png", alt: "student", class: "xsmall_image" ) %>
-           <h3>Les guides les plus intéréssants</h3>
-         </div>
-         <div class="col-xs-12 col-sm-6 col-md-4">
-           <%#= image_tag("euro.png", alt: "euro", class: "xsmall_image" ) %>
-           <h3>Les meilleurs tarifs</h3>
-         </div>
-       </div>
-     </div>
-  </div>
-</div> -->
-
-<%= link_to("new", new_tour_path) %>
-<% unless  current_user.nil? %>
-  <%= link_to("my listings", index_user_tours_path(current_user)) %>
-  <%= current_user.id %>
-<% end %>
 
 <% content_for(:after_js) do %>
  <%= javascript_tag do %>
@@ -58,7 +51,19 @@
        markers = handler.addMarkers(<%= raw @markers.to_json %>);
        handler.bounds.extendWith(markers);
        handler.fitMapToBounds();
+
+       markers.forEach(function(marker, index){
+        marker = <%= raw @markers[0].to_json %>
+        google.maps.event.addListener(marker, 'click', function() {
+            alert("adrien");
+        });
+       })
      });
-   })
+
+
+
+
+
+    })
  <% end %>
 <% end %>

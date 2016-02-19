@@ -4,10 +4,10 @@
 
 
 .full-gmap {
-  height: 88vh !important;
+  height: 90vh !important;
 }
 .index-tour-list {
-  height: 88vh;
+  height: 90vh;
   overflow-y: scroll;
 }
 .card-reviewed h3 {
@@ -27,4 +27,69 @@ margin: 0 0 2px;
 .map-wrapper {
   height: 100%;
   width: 100%;
+}
+.index-header {
+
+}
+.index-tour-list i{
+  font-size: 16px;
+  padding:5px;
+}
+.index-filters{
+  background-color: #F7F7F7;
+    border-radius: 0px 0px 3px 3px;
+    border: 1px solid #E5E5E5;
+    color: $gray;
+        display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 9px;
+}
+.index-options{
+  background-color: #F7F7F7;
+    border-radius: 0px 0px 3px 3px;
+    border: 1px solid #E5E5E5;
+    color: $gray;
+        display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 9px;
+}
+.index-tour-list .pagination .current {
+    padding: 1px 10px;
+    background-color: white;
+    text-align: center;
+    border-radius: 3px;
+    margin: 0 1px 0 1px;
+    border: 1px solid #EBE7E7;
+}
+.index-tour-list .pagination a{
+    padding: 1px 10px;
+    background-color: white;
+    text-align: center;
+    border-radius: 3px;
+    margin: 0 1px 0 1px;
+    border: 1px solid #EBE7E7;
+}
+.index-tour-list .pagination a:hover{
+    background-color: #F9F7F7;
+}
+.index-tour-list .pagination {
+  margin-left: 30px;
+}
+.border-bottom-index {
+  border-bottom: 1px solid #B9B9B9;
+}
+.option_button {
+  background-color: #C4C4DE;
+    border: 1px solid #A9A9C1;
+    padding: 2px 15px;
+}
+.option_button:hover {
+background-color: #B6B6CF;
+    border: 1px solid #9B9BB0;
+  }
+.option_button.active {
+  color: white;
+ background-color: #6F6FAA !important;
 }
