@@ -15,4 +15,7 @@ class Tour < ActiveRecord::Base
   #
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  paginates_per 10
+
 end
