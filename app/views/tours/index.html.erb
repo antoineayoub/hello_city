@@ -6,32 +6,51 @@
       <div class="index-header">
         <h3 class="text-center">Choisissez un tour</h3>
       </div>
+      <%= form_tag(tours_path, method: "get") do %>
       <div class="index-filters">
-        <ul class="list-inline">
-          <li><span>Choose Max Price </span></li>
-          <b><%= Tour.minimum(:price).to_i %>€</b>
-          <input id="price-limi"t type="text" class="" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/><b><%= Tour.maximum(:price).to_i %>€</b>
-        </ul>
+        <div class="price-range">
+          <ul class="list-inline">
+            <li><%= label_tag 'Maximum Price:  ' %></li>
+            <li><%= Tour.minimum(:price).to_i %>€</li>
+            <li><%= range_field_tag :price, class: "range-form" %></li>
+            <li><%= Tour.maximum(:price).to_i %>€</li>
+          </ul>
+        </div>
+        <div class="duration-range">
+          <ul class="list-inline">
+            <li><%= label_tag 'Max Tour Duration:   ' %></li>
+            <li><%= Tour.minimum(:tour_duration).to_i %>hr</b></li>
+            <li><%= range_field_tag :tour_duration, class: "range-form" %></li>
+            <li><%= Tour.maximum(:tour_duration).to_i %>hrs</li>
+          </ul>
+        </div>
       </div>
       <div class="index-options">
         <ul class="list-inline">
-          <div class="btn-group" data-toggle="buttons">
-            <form method="post" action="/controller/index" class="btn option_button">
-              <i class="fa fa-cutlery"></i>
-              <input type="checkbox" autocomplete="off"> Price Includes Food
-            </form>
-            <form method="post" action="/controller/index" class="btn option_button">
-              <i class="fa fa-ticket"></i>
-              <input type="checkbox" autocomplete="off"> Price Includes Tickets
-            </form>
-          </div>
+            <div class="btn-group">
+            <%= select_tag :guide_level, options_for_select(1..5), :prompt => "Guide Level", class: "btn btn-danger" %>
+
+            <%= select_tag :language, options_for_select(["French", "Chinese", "English"]), :prompt => "Language", class: "btn btn-danger" %>
+              <%= select_tag :provides_ticket, options_for_select([true, false]), :prompt => "Tickets Provided", class: "btn btn-danger" %>
+
+              <%= select_tag :provides_car, options_for_select([true, false]), :prompt => "Car Trip Included", class: "btn btn-danger" %>
+
+              <%= select_tag :provides_food, options_for_select([true, false]), :prompt => "Food Included", class: "btn btn-danger" %>
+            </div>
+        </ul>
       </div>
+      <div class="search-button">
+        <%= submit_tag "Search", class: "btn btn-primary", style:"width:100%;"%>
+        <% end %>
+      </div>
+
+
       <% @tours.each do |tour| %>
         <div class="col-xs-12 col-sm-6">
           <%= render "shared/card_listing", tour: tour %>
         </div>
       <% end %>
-      <%= paginate @tours %>
+      <% #paginate @tours %>
       <div class="border-bottom-index"></div>
       </div>
     </div>

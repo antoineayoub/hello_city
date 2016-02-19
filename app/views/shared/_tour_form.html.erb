@@ -1,12 +1,19 @@
 <%= f.input :name %>
+<%= f.input :tour_duration, collection: 1..8, label: 'Tour Duration (in hrs)' %>
 <%= f.input :description %>
-
-<%= f.input :live %>
-<%= f.input :guide_level %>
-<%= f.input :language %>
 <%= f.input :address %>
-<%= f.input :price %>
-<%= f.input :photos, as: :attachinary %>
+
+<%= f.input :guide_level, collection: 1..5, label: 'Tour Expertise (from 1 to 5)' %>
+<%= f.input :language, collection:  ["French", "English", "Spanish", "Chinese"] %>
+
+<p>What do you Provide ?</p>
+<%= f.input :provides_ticket %>
+<%= f.input :provides_food %>
+<%= f.input :provides_car %>
+
+<%= f.input :price, label: 'Proposed price' %>
+<%= f.input :live, label: 'Put my offer live now' %>
+<%= f.input :photos, as: :attachinary, label: 'Add 3 pictures to make it sexy ;)' %>
 
 <%= f.button :submit %>
 
