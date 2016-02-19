@@ -37,7 +37,17 @@ class ToursController < ApplicationController
     else
       @tours = Tour.all
     end
+
 end
+
+  def reviewable?(booking, review)
+    # current_user = validated_booking.user_id && review.user_id does not exist
+    if current_user = booking.user && current_user.reviews
+      true
+    else
+      false
+    end
+  end
 
   def guide_profile
     @tour = Tour.find(params[:id])
@@ -89,11 +99,13 @@ end
   def show
     @tour = Tour.find(params[:id])
     @booking = Booking.new
+    @review = Review.new
     # Let's DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@tour) do |tour, marker|
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
+    @reviews = Review.all
   end
 
   def search

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: [:show ] do
     collection do
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
   resources :tours, except: [ :destroy ] do
+    resources :reviews, only: [:create]
     collection do
       get ':id/guide_profile', to: 'tours#guide_profile', as: :guide_profile
       get 'index_user/:id', to: 'tours#index_user', as: :index_user
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
       patch '/:id/update_live', to: 'tours#update_live', as: :update_live
     end
     resources :bookings, only: [ :create ]
+    #post ':id/reviews', to: 'reviews#create', as: :create_review
   end
   resources :bookings, only: [ :update ]
 
