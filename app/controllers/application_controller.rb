@@ -4,4 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
 
+  def count_pending
+    @nb_pending = 0
+    current_user.tours.each do |tour|
+      tour.bookings.each do |booking|
+        if booking.status == "pending"
+          @nb_pending += 1
+        end
+      end
+    end
+  end
 end

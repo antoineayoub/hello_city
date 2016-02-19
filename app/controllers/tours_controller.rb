@@ -7,6 +7,7 @@ class ToursController < ApplicationController
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
+    count_pending
   end
 
   def index_user

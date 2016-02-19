@@ -40,13 +40,15 @@
                           <div class="card-small-description">
                             <h2>avec <%= booking.tour.user.first_name %> le <%= booking.start_at %></h2>
                           </div>
-                          <%= form_for(booking) do |f|%>
-                            <%= f.hidden_field :status, :value => "cancelled" %>
-                            <%= f.button :submit, class: 'btn picto picto-danger card-small-danger', data: { confirm: 'Are your Sure ?' } do  %>
-                              <i class="fa fa-times-circle"></i>
+                          <% if booking.status == "pending" %>
+                            <%= form_for(booking, remote: true) do |f| %>
+                              <%= f.hidden_field :status, value: "cancelled" %>
+                              <%= f.button :submit, class: 'picto picto-danger card-small-danger' do  %>
+                                <i class="fa fa-times-circle"></i>
+                              <% end %>
                             <% end %>
                           <% end %>
-                          <div class="flag flag-<%= booking.status %> "><%= booking.status %></div>
+                          <div class="flag flag-<%= booking.status %>" id="<%= booking.id %>"><%= booking.status %></div>
                           <%= link_to "", tour_path(booking.tour), class: "card-link smaller-link-92" %>
                         </div>
                       </li>
@@ -77,19 +79,28 @@
                               <div class="card-small-description">
                                 <h2>avec <%= booking.user.first_name %> le <%= booking.start_at %></h2>
                               </div>
-                                <%= form_for(booking) do |f|%>
-                                  <%= f.hidden_field :status, :value => "cancelled" %>
-                                  <%= f.button :submit, class: 'btn picto picto-success card-small-success', data: { confirm: 'Are your Sure ?' } do  %>
+                              <% if booking.status == 'pending' %>
+                                <%= form_for(booking, remote: true) do |f|%>
+                                  <%= f.hidden_field :status, value: "validated" %>
+                                  <%= f.button :submit, class: 'picto picto-success card-small-success' do  %>
                                     <i class="fa fa-check-circle"></i>
                                   <% end %>
                                 <% end %>
-                              <%= form_for(booking) do |f|%>
+                                <%= form_for(booking, remote: true) do |f|%>
                                 <%= f.hidden_field :status, :value => "cancelled" %>
-                                <%= f.button :submit, class: 'btn picto picto-danger card-small-danger', data: { confirm: 'Are your Sure ?' } do  %>
+                                <%= f.button :submit, class: 'picto picto-danger card-small-danger' do  %>
                                   <i class="fa fa-times-circle"></i>
                                 <% end %>
+                                <% end %>
+                              <% elsif booking.status == 'validated' %>
+                                <%= form_for(booking, remote: true) do |f|%>
+                                <%= f.hidden_field :status, :value => "cancelled" %>
+                                <%= f.button :submit, class: 'picto picto-danger card-small-danger' do  %>
+                                  <i class="fa fa-times-circle"></i>
+                                <% end %>
+                                <% end %>
                               <% end %>
-                              <div class="flag flag-<%= booking.status %> "><%= booking.status %></div>
+                              <div class="flag flag-<%= booking.status %>" id="<%= booking.id %>"><%= booking.status %></div>
                               <%= link_to "", tour_path(booking.tour), class: "card-link smaller-link-84" %>
                             </div>
                           </li>

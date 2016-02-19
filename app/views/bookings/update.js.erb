@@ -1,0 +1,13 @@
+<% if @booking.errors.any? %>
+    alert('Erreur de chargement')
+<% else %>
+  $('#<%= @booking.id %>').html('<%= @booking.status %>');
+  $('#<%= @booking.id %>').removeClass('flag-pending');
+  $('#<%= @booking.id %>').removeClass('flag-cancelled');
+  $('#<%= @booking.id %>').removeClass('flag-validated');
+  $('#<%= @booking.id %>').addClass('flag-<%= @booking.status %>');
+  $('#edit_booking_<%= @booking.id %>').html('');
+  <% if @status == 'pending' && @booking.user_id != current_user.id %>
+    $('.badge-blue').text(parseInt($('.badge-blue').text()) - 1);
+  <% end %>
+<% end %>
