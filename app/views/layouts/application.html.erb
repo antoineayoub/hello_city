@@ -9,7 +9,11 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
-  <%= render 'shared/navbar' %>
+  <% if @navbar_white %>
+    <%= render 'shared/navbar_transparent'%>
+  <% else %>
+    <%= render 'shared/navbar_black'%>
+  <% end %>
   <%= render 'shared/flashes' %>
   <%= yield %>
   <%= render 'shared/footer' unless @skip_footer%>

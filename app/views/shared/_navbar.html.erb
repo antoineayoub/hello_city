@@ -1,6 +1,4 @@
-<div class="navbar-wagon">
-
-  <!-- Logo -->
+<!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "logo_white.png" %>
   <% end %>
@@ -23,7 +21,9 @@
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
+          <div class="badge badge-blue" style="color: white;">
+            <%= @nb_pending %>
+          </div>
         </div>
       <% end %>
       <span class="navbar-user-name"><%= current_user.first_name.capitalize%></span>
@@ -76,27 +76,3 @@
       </ul>
     </div>
   </div>
-</div>
-
-<!-- Button trigger modal -->
-  <!--     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Sign IN
-      </button> -->
-<!-- Modal -->
-<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-       ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->

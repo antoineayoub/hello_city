@@ -15,10 +15,17 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
+    @status = @booking.status
     if @booking.update(booking_params)
-      redirect_to user_path(@booking.user)
+      respond_to do |format|
+        format.html { redirect_to user_path(@booking.user) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
-      render :show
+      respond_to do |format|
+        format.html { render :show }
+        format.js  # <-- idem
+      end
     end
   end
 
