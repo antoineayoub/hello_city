@@ -7,7 +7,6 @@ class ToursController < ApplicationController
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
-    count_pending
     @skip_footer = true
     @tours = @tours.order(:price).page
   end
@@ -18,6 +17,10 @@ class ToursController < ApplicationController
 
   def new
     @tour = Tour.new
+  end
+
+  def getMarker
+    i
   end
 
   def create

@@ -52,18 +52,13 @@
        handler.bounds.extendWith(markers);
        handler.fitMapToBounds();
 
-       markers.forEach(function(marker, index){
-        marker = <%= raw @markers[0].to_json %>
+       markers_array = <%= raw @markers.to_json %>
+       markers_array  .forEach(function(marker, index){
         google.maps.event.addListener(marker, 'click', function() {
             alert("adrien");
         });
        })
      });
-
-
-
-
-
     })
  <% end %>
 <% end %>
