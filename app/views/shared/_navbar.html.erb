@@ -6,24 +6,31 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-
+    <% if @home_search %>
+      <!-- Search form -->
+      <form action="" class="navbar-wagon-search">
+        <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
+        <button type="submit" class="navbar-wagon-search-btn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    <% end %>
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
       <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
+      <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue" style="color: white;">
-            <%= @nb_pending %>
-          </div>
+          <% if @nb_pending == 0 %>
+             <div class="badge badge-green" style="color: white;">
+              <%= @nb_pending %>
+            </div>
+          <% else %>
+            <div class="badge badge-red" style="color: white;">
+              <%= @nb_pending %>
+            </div>
+          <% end %>
         </div>
       <% end %>
       <span class="navbar-user-name"><%= current_user.first_name.capitalize%></span>

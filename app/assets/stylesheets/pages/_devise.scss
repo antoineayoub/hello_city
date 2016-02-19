@@ -1,0 +1,81 @@
+.button-action-form .btn{
+  width: 100%;
+  color:white;
+  font-weight: bolder;
+}
+
+.btn-fb-custo{
+  width:100%;
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
+.padded-100{
+  padding: 100px 0;
+}
+
+.nav-signin-list {
+  margin-left: 0;
+  padding-bottom: 10px;
+  .nav-login {
+    width: 50%;
+    float: left;
+    margin-bottom: 10px;
+  }
+}
+
+.nav-signin{
+  padding: 20px 0;
+  text-align: center;
+  margin:0;
+
+}
+.nav-signin-open{
+  background: $red;
+  color:white;
+  font-weight: bolder;
+  border: 1px solid $red;
+}
+.nav-signin-closed{
+  background: white;
+  color: $red;
+  font-weight: bolder;
+  border:1px solid $red;
+}
+
+.nav-signin-closed:hover{
+  background: $red;
+  color: white;
+  font-weight: bolder;
+  border:1px solid $red;
+
+}
+.nav-signin-closed a {
+  color:$red;
+  text-decoration: none;
+}
+
+.nav-signin-closed a:hover{
+  color: white;
+  text-decoration: none;
+}
+
+.links-gray{
+  color:$gray;
+  padding-top: 5px;
+  font-size: 12px;
+}
+.links-gray:hover{
+  color:black;
+}
+.links-gray a{
+  color:$gray;
+  padding-top: 5px;
+  font-size: 12px;
+}
+.links-gray a:hover{
+  color:black;
+  padding-top: 5px;
+  font-size: 12px;
+  text-decoration: none;
+}

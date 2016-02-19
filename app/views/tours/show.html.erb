@@ -94,7 +94,7 @@
         <div class="more-about">
             <h3>More about your guide!</h3>
             <p style="font-style:italic;"> <%= @tour.user.summary %> </p>
-            <%= link_to( user_path(@tour.user), html_options = {class: "btn btn-primary", style: "margin-top:20px;"} ) do %>
+            <%= link_to( guide_profile_tours_path(@tour), html_options = {class: "btn btn-primary", style: "margin-top:20px;"} ) do %>
               <i class="fa fa-user"><span style="margin-left:10px">view this guide</span></i>
             <% end %>
         </div>
@@ -111,8 +111,10 @@
       <h3>Nos City Lovers ont aussi aimé</h3>
         <div class="container">
           <div class="row">
-            <% @tours.sample(3).each do |tour| %>
-            <%= render "shared/card", tour: tour %>
+            <% Tour.all.sample(3).each do |tour| %>
+              <div class="col-xs-12 col-sm-4 col-md-4">
+                <%= render "shared/card_listing", tour: tour %>
+           </div>
             <% end %>
           </div>
         </div>

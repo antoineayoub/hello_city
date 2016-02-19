@@ -44,6 +44,8 @@ margin: 0 0 2px;
     flex-direction: row;
     justify-content: center;
     padding-top: 9px;
+    display: flex;
+    flex-direction: column;
 }
 .index-options{
   background-color: #F7F7F7;
@@ -54,6 +56,8 @@ margin: 0 0 2px;
     flex-direction: row;
     justify-content: center;
     padding-top: 9px;
+    width: 100%;
+    margin-top: 10px;
 }
 .index-tour-list .pagination .current {
     padding: 1px 10px;
@@ -92,4 +96,21 @@ background-color: #B6B6CF;
 .option_button.active {
   color: white;
  background-color: #6F6FAA !important;
+}
+.index-options .btn {
+  font-size: 12px;
+      padding: 3px 0px;
+}
+.search-button {
+  margin-top:10px;
+  margin-bottom: 20px;
+}
+.index-filters label {
+  width: 210px;
+    margin-left: 30px;
+        font-size: 14px;
+}
+.index-filters {
+        font-size: 14px;
+
 }

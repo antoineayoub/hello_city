@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :tours, except: [ :destroy ] do
     collection do
+      get ':id/guide_profile', to: 'tours#guide_profile', as: :guide_profile
       get 'index_user/:id', to: 'tours#index_user', as: :index_user
       put '/:id/update_live', to: 'tours#update_live'
       patch '/:id/update_live', to: 'tours#update_live', as: :update_live
