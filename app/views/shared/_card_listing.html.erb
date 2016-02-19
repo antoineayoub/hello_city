@@ -1,8 +1,7 @@
 <div class="card card-reviewed" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path tour.photos.first&.path %>');">
   <div class="card-category"> <p> <%= tour.price.to_i %>€ </p></div>
   <div class="card-description">
-    <h3><%= tour.name.split("").first(30).join("") %> avec <%= tour.user.first_name %>...</h3>
-    <p><%= tour.description.split("").first(60).join("")%>...</p>
+    <h3><%= tour.name.split("").first(50).join("") %> avec <%= tour.user.first_name %></h3>
   </div>
   <%= cl_image_tag tour.user.picture.path, {class: "card-user avatar", id: "avatar_user"}%>
   <%= link_to "", tour_path(tour), class: "card-link" %>

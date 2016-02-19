@@ -44,6 +44,12 @@ class ToursController < ApplicationController
     count_pending
 end
 
+  def guide_profile
+    @tour = Tour.find(params[:id])
+    @guide_tours = Tour.where("user_id = #{@tour.user_id}")
+    #@user_tours = Tour.where("@tour.user_id = guide_id")
+  end
+
 
   def index_user
     @user_tours = Tour.where("user_id = #{current_user.id}")
@@ -88,6 +94,7 @@ end
   end
 
   def show
+    @tours = Tour.all
     @tour = Tour.find(params[:id])
     @booking = Booking.new
     # Let's DYNAMICALLY build the markers for the view.

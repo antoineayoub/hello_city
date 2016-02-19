@@ -3,7 +3,7 @@
     <div class="card-category"><%= tour.price.to_i %> €</div>
     <div class="card-description">
       <h2><%= tour.name %></h2>
-      <p><%= tour.description %></p>
+      <p><%= tour.description.split("").first(90).join("") %>...</p>
     </div>
     <%= cl_image_tag tour.user.picture.path, {class: "card-user avatar", id: "avatar_user"}%>
     <%= link_to "", tour_path(tour), class: "card-link" %>
