@@ -1,21 +1,21 @@
 <%= f.input :name %>
-<%= f.input :tour_duration, collection: 1..8, label: 'Tour Duration (in hrs)' %>
+<%= f.input :tour_duration, collection: 1..8, label: 'Durée en heure' %>
 <%= f.input :description %>
 <%= f.input :address %>
 
-<%= f.input :guide_level, collection: 1..5, label: 'Tour Expertise (from 1 to 5)' %>
-<%= f.input :language, collection:  ["French", "English", "Spanish", "Chinese"] %>
+<%= f.input :guide_level, collection: 1..5, label: 'Votre expertise (from 1 to 5)' %>
+<%= f.input :language, label: "Langue", collection:  ["French", "English", "Spanish", "Chinese"] %>
 
-<p>What do you Provide ?</p>
-<%= f.input :provides_ticket %>
-<%= f.input :provides_food %>
-<%= f.input :provides_car %>
+<p>Quels services complémentaires ?</p>
+<%= f.input :provides_ticket, label: 'Ticket d\'entrée' %>
+<%= f.input :provides_food, label: 'Nourriture' %>
+<%= f.input :provides_car, label: 'J\'ai une voiture' %>
 
-<%= f.input :price, label: 'Proposed price' %>
-<%= f.input :live, label: 'Put my offer live now' %>
-<%= f.input :photos, as: :attachinary, label: 'Add 3 pictures to make it sexy ;)' %>
+<%= f.input :price, label: 'Prix proposé' %>
+<%= f.input :live, label: 'Mettre mon tour live maintenant' %>
+<%= f.input :photos, as: :attachinary, label: 'Ajouter 3 photos' %>
 
-<%= f.button :submit %>
+<%= f.button :submit, class: "btn btn-danger" %>
 
 
 
