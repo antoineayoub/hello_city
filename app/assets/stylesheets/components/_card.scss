@@ -6,19 +6,24 @@
   position: relative;
   margin-bottom: 10px;
   margin-top: 10px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 .card-user {
   position: absolute;
   right: 10px;
-  top: 10px;
+  bottom: -10px;
 }
 .card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 20px;
-  text-transform: uppercase;
+    position: absolute;
+    top: 20px;
+    /* left: 10px; */
+    font-size: 20px;
+    text-transform: uppercase;
+    background-color: rgba(0,0,0,0.7);
+    // padding-left: 10px;
+    height: 35px;
+    width: 80px;
+    text-align: center;
 }
 .card-description {
   position: absolute;
@@ -26,7 +31,8 @@
   left: 10px;
 }
 .card-description h2 {
-  font-size: 24px;
+  font-size: 16px;
+  font-weight:bolder;
 }
 .card-description p {
   font-size: 13px;

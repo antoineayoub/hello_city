@@ -17,7 +17,9 @@
           <h1 class="no-margin-top"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
           <p><%= current_user.summary %></p>
           <p>Account created since <%= current_user.created_at.year %></p>
-          <%= link_to "Edit", edit_users_path, class: "btn btn-primary" %>
+          <%= link_to edit_users_path, class: "edit-link" do %>
+          <i class="fa fa-pencil"></i> Editer mon profile
+          <% end %>
         </div>
       </div>
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
