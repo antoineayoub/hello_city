@@ -1,4 +1,4 @@
-<% if @booking.errors.any? %>
+  <% if @booking.errors.any? %>
     alert('Erreur de chargement')
 <% else %>
   $('#<%= @booking.id %>').html('<%= @booking.status %>');

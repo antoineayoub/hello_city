@@ -1,23 +1,35 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <h2>Log in</h2>
-
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-inputs">
-          <%= f.input :email, required: false, autofocus: true %>
-          <%= f.input :password, required: false %>
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="padded-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="list-inline nav-signin-list">
+          <div class="nav-login nav-signin-open">
+            <div class="nav-signin">
+              Se connecter
+            </div>
+          </div>
+          <div class="nav-login nav-signin-closed">
+            <div class="form-actions button-top nav-signin">
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
         </div>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email, label: false, required: false, autofocus: true, placeholder: "Email" %>
+            <%= f.input :password, label: false,required: false, placeholder: "Password" %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          </div>
+          <div class="form-actions button-action-form">
+                  <%= f.button :submit, "Se connecter", class: "btn btn-danger" %>
+            </div>
+             <%= render "devise/shared/link_facebook" %>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
-        </div>
-      <% end %>
-
-
-      <%= render "devise/shared/links" %>
+             <div class="links-gray">
+               <i class="fa fa-ambulance"></i><%= render "devise/shared/link_forgot_pass" %>
+             </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
