@@ -16,6 +16,6 @@ class Tour < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
+  scoped_search on: [:guide_level, :price, :provides_car, :provides_ticket, :provides_food, :tour_duration, :language]
   paginates_per 10
-
 end
