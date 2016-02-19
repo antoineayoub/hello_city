@@ -6,10 +6,12 @@ class ApplicationController < ActionController::Base
 
   def count_pending
     @nb_pending = 0
-    current_user.tours.each do |tour|
-      tour.bookings.each do |booking|
-        if booking.status == "pending"
-          @nb_pending += 1
+    unless current_user.nil?
+      current_user.tours.each do |tour|
+        tour.bookings.each do |booking|
+          if booking.status == "pending"
+            @nb_pending += 1
+          end
         end
       end
     end

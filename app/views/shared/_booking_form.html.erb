@@ -1,15 +1,15 @@
 <div class="decide-booking-card">
   <div class="booking-title">
-    <p>Book Now!</p>
+    <p>Reservez</p>
   </div>
   <div class="form-booking">
     <%= simple_form_for [locals[:tour], locals[:booking]], method: 'post' do |f| %>
-      <%= f.input :start_at, label: 'Choose a Date', as: :string, placeholder: 'select date', required: false, input_html: {class: 'datepicker'} %>
-      <%= f.input :nb_people, collection: 1..10, prompt: "Number of Persons" %>
-      <%= f.input :price, disabled: true, label: "Total Price", as: :string, placeholder: "#{@tour.price.to_i} €"  %>
+      <%= f.input :start_at, label: false, as: :string, placeholder: 'Selectionnez une date', required: false, input_html: {class: 'datepicker'} %>
+      <%= f.input :nb_people, label: false,collection: 1..10, prompt: "Nombre de personnes" %>
+      <%= f.input :price, disabled: true, label: false, as: :string, placeholder: "#{@tour.price.to_i} €"  %>
       <div id="computation"></div>
-      <%= button_tag( type: 'submit', class: 'book-now-button btn btn-success')  do %>
-        <i class="fa fa-sign-in"></i> <span style="padding-left:5px;">Confirm Booking!</span>
+      <%= button_tag( type: 'submit', class: 'book-now-button btn btn-danger')  do %>
+        <i class="fa fa-sign-in"></i> <span style="padding-left:5px;">Confirmez</span>
       <% end %>
     <% end %>
   </div>

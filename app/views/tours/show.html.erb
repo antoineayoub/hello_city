@@ -3,7 +3,7 @@
 
 <!-- banner -->
 <div class="tour-banner">
-  <div class="tour-background" style="height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
+  <div class="tour-background" style="height: 300px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @tour.photos.first&.path %>'); background-position: center; background-size: cover;">
     <% if current_user.nil? || @tour.user_id.nil? %>
         <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
       <% else %>
@@ -11,25 +11,6 @@
         <%= render "shared/booking_form", locals: { tour: @tour, booking: @booking } %>
       <% end %>
     <% end %>
-  </div>
-</div>
-<!-- Photo Gallery -->
-<div class="photo-gallery">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <%= render "shared/tour_show_gallery", tour: @tour %>
-      </div>
-      <div class="col-md-4">
-          <% unless current_user.nil? || @tour.user_id.nil? %>
-            <% if @tour.user_id == current_user.id  %>
-              <%= link_to(edit_tour_path(@tour), html_options = {class: "tour-edit-button btn btn-primary btn-lg"}) do %>
-                <i class="fa fa-pencil"><span style="padding-left:10px">Edit Tour</span></i>
-              <% end %>
-            <% end %>
-          <% end %>
-      </div>
-    </div>
   </div>
 </div>
 <div class="guide-profile">
@@ -82,6 +63,26 @@
     </div>
   </div>
 </div>
+<!-- Photo Gallery -->
+<div class="photo-gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <%= render "shared/tour_show_gallery", tour: @tour %>
+      </div>
+      <div class="col-md-4">
+          <% unless current_user.nil? || @tour.user_id.nil? %>
+            <% if @tour.user_id == current_user.id  %>
+              <%= link_to(edit_tour_path(@tour), html_options = {class: "tour-edit-button btn btn-primary btn-lg"}) do %>
+                <i class="fa fa-pencil"><span style="padding-left:10px">Edit Tour</span></i>
+              <% end %>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <div class="information-map">
 <div class="container">
