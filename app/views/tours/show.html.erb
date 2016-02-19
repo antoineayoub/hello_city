@@ -108,11 +108,11 @@
   <div class="container">
     <div class="row">
       <div class="wrapper-white padded">
-      <h3>TOP 3 Most Visited Tours</h3>
+      <h3>Nos City Lovers ont aussi aimé</h3>
         <div class="container">
           <div class="row">
-            <% Tour.all.sample(3).each do |tour| %>
-              <%= render "shared/card_listing", tour: tour %>
+            <% @tours.sample(3).each do |tour| %>
+            <%= render "shared/card", tour: tour %>
             <% end %>
           </div>
         </div>

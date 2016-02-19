@@ -53,6 +53,7 @@ class ToursController < ApplicationController
   end
 
   def show
+    @tours = Tour.all
     @tour = Tour.find(params[:id])
     @booking = Booking.new
     # Let's DYNAMICALLY build the markers for the view.
