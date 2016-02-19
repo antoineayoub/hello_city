@@ -102,7 +102,7 @@ end
 
 # CREATE BOOKINGS
 
-50.times do
+80.times do
   tour_id = Faker::Number.between(tour_tbl_id.first, tour_tbl_id.last)
   user_id = Faker::Number.between(user_tbl_id.first, user_tbl_id.last)
   unless user_id == Tour.find(tour_id).user_id
