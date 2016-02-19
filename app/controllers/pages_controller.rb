@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     @tours = Tour.all
     @navbar_white = true
     count_pending
+    @home_search = false
   end
 
 
