@@ -1,4 +1,4 @@
-<div class="decide-booking-card">
+<div class="decide-booking-card decide-booking-absolute">
   <div class="booking-title">
     <p>Reservez</p>
   </div>
@@ -27,9 +27,9 @@
       orientation: "bottom auto"
     });
 
-    $('#booking_nb_people').on('click', function(){
+    $('#booking_nb_people').on('change', function(){
       var base_price = <%= @tour.price.to_i %>;
-
+      console.log("hello")
       var people = parseInt($( "#booking_nb_people option:selected" ).val());
       people = _.isNaN(people) ? 1 : people;
 

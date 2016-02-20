@@ -2,11 +2,7 @@ class ToursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    search
-    @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
-      marker.lat tour.latitude
-      marker.lng tour.longitude
-    end
+
     @skip_footer = true
 
     params_hash = {
@@ -32,11 +28,20 @@ class ToursController < ApplicationController
       search_query << " AND (#{key.to_s} = #{params_hash[key]}) " unless params_hash[key] = "" || params_hash[key] = nil
     end
 
-    if  Tour.search_for(search_query).count >= 0
+    if Tour.search_for(search_query).count >= 0
       @tours = Tour.search_for(search_query)
     else
       @tours = Tour.all
     end
+
+    @tours = search(@tours)
+
+    @markers = Gmaps4rails.build_markers(@tours) do |tour, marker|
+      marker.lat tour.latitude
+      marker.lng tour.longitude
+    end
+
+    count_pending
   end
 
   def guide_profile
@@ -62,6 +67,7 @@ class ToursController < ApplicationController
 
   def new
     @tour = Tour.new
+    count_pending
   end
 
   def create
@@ -76,6 +82,7 @@ class ToursController < ApplicationController
 
   def edit
     @tour = Tour.find(params[:id])
+    count_pending
   end
 
   def update
@@ -97,6 +104,7 @@ class ToursController < ApplicationController
   end
 
   def show
+    @tours = Tour.all
     @tour = Tour.find(params[:id])
     @booking = Booking.new
     @review = Review.new
@@ -106,14 +114,14 @@ class ToursController < ApplicationController
       marker.lng tour.longitude
     end
     @reviews = Review.where("tour_id = #{params[:id]}")
+    count_pending
   end
 
-  def search
+  def search(tours)
     if params[:address].present?
-      @tours = Tour.near(params[:address], 1)
-    else
-      @tours = Tour.all
+      tours = tours.near(params[:address], 1)
     end
+    tours
   end
 
   private

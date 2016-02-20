@@ -24,9 +24,14 @@ tbl_pic = %w(http://elfnordics.com/mediabank/var/resizes/e.l.f.-Scandinavia-Staf
 http://whysquare.co.nz/wp-content/uploads/2013/07/profile_square3-270x270.jpg
 http://rorganize.it/uploads/person/picture/89/person_profile_avatar_face_shrunk_square_200x200.jpg
 http://static1.squarespace.com/static/53af1c83e4b0b3e1fc2000bd/53b0a50be4b0d621f6aa6072/5636475be4b0507883434959/1446397788072/Randy+Krum+Profile+Photo+square.jpg
-)
+http://www.glamour.com/images/fashion/2013/06/sophia-chabbott-profile-square-w352.jpg
+http://www.automationheroes.com/wp-content/uploads/2014/01/Business-Profile-Pic-square.jpg
+http://woogmasterstudio.com/wp-content/uploads/2015/04/square-alex-profile.jpg
+https://www.business2blogger.com/wp-content/uploads/2014/04/Profile-Big-Square.jpg.jpg
+https://s3.amazonaws.com/steady-static/img/provider/bcvOrym6Jp90TPVGjBdR4s8BLzOgL2YzMHX9_profile_square.jpg
+https://nianow.com/sites/nianow.com/files/user-files/user-7338/profile/square-profile.jpg)
 
-4.times do
+10.times do
   first_name = Faker::Name.first_name
   user = User.new(
           first_name: first_name,
@@ -61,8 +66,19 @@ photo_urls = %w(http://www.parisclassictour.com/wcms/img/-size-17206-900-600.jpg
   http://www.parisclassictour.com/wcms/img/-size-17220-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17221-900-600.jpg,
   http://www.parisclassictour.com/wcms/img/-size-17222-900-600.jpg)
-tour_names = ["Oh ville Lumière","Paris est magique","Le meilleur de Paris","Le Paris des parisiens","Au fond des parisiennes","Paris by Night","Les plus beaux monuments","Ballade en vélo!","Visite Fabuleuse","Apprendre sur Paris","Visite avec un parisien"]
-tour_addresses = ["place de la Bastille Paris","place Vendôme Paris","place de la Concorde Paris","square des Innocents Paris","place du trocadero paris","Hôtel Matignon Paris","Palais de la Légion d'honneur Paris","Palais du Luxembourg Paris","Hôtel de Sens Paris","Palais Brongniart Paris","Temple protestant de l'Oratoire du Louvre Paris","Grande Mosquée de Paris Paris","Église Saint-Eustache Paris","Église Saint-Louis-des-Invalides Paris","Basilique du Sacré-Cœur de Montmartre Paris"]
+tour_names = ["Oh ville Lumière","Paris est magique","Le meilleur de Paris",
+  "Le Paris des parisiens","Au fond des parisiennes","Paris by Night",
+  "Les plus beaux monuments","Ballade en vélo!","Visite Fabuleuse",
+  "Apprendre sur Paris","Visite avec un parisien"]
+tour_addresses = ["Place de la Bastille Paris",
+  "Place Vendôme Paris",
+  "Place de la Concorde Paris",
+  "Square des Innocents Paris","Place du trocadero paris",
+  "Hôtel Matignon Paris","Palais de la Légion d'honneur Paris",
+  "Palais du Luxembourg Paris","Hôtel de Sens Paris","Palais Brongniart Paris",
+  "Temple protestant de l'Oratoire du Louvre Paris","Grande Mosquée de Paris Paris",
+  "Église Saint-Eustache Paris","Église Saint-Louis-des-Invalides Paris",
+  "Basilique du Sacré-Cœur de Montmartre Paris"]
 
 20.times do
   tour = Tour.new(
@@ -86,17 +102,20 @@ end
 
 # CREATE BOOKINGS
 
-20.times do
+80.times do
   tour_id = Faker::Number.between(tour_tbl_id.first, tour_tbl_id.last)
-  booking = Booking.new(
-    start_at: Faker::Time.between(DateTime.now, DateTime.now + 100),
-    status: ['pending', 'accepted'].sample,
-    user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
-    tour_id: tour_id,
-    price: Tour.find(tour_id).price,
-    nb_people: (1..10).to_a.sample
-    )
-  booking.save
+  user_id = Faker::Number.between(user_tbl_id.first, user_tbl_id.last)
+  unless user_id == Tour.find(tour_id).user_id
+    booking = Booking.new(
+      start_at: Faker::Time.between(DateTime.now, DateTime.now + 100),
+      status: ['pending', 'accepted'].sample,
+      user_id: user_id,
+      tour_id: tour_id,
+      price: Tour.find(tour_id).price,
+      nb_people: (1..10).to_a.sample
+      )
+    booking.save
+  end
 end
 
 # CREATE REVIEWS

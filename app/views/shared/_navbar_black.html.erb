@@ -1,3 +1,92 @@
 <div class="navbar-wagon-black">
-  <%= render 'shared/navbar' %>
+  <!-- Logo -->
+  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+    <%= image_tag "logo_white.png" %>
+  <% end %>
+
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <% if @home_search %>
+      <!-- Search form -->
+      <form action="" class="navbar-wagon-search">
+        <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
+        <button type="submit" class="navbar-wagon-search-btn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    <% end %>
+    <!-- Different navigation if login or not -->
+    <% if user_signed_in? %>
+      <!-- Notification -->
+      <%= form_tag(tours_path, :method => "get", class: "form-inline") do %>
+       <%= text_field_tag :address, params[:address], class: "form-control fields custom-bar", id: "user_input_autocomplete_address", placeholder: 'Où cherchez-vous une visite ?' %>
+       <%= button_tag(type: :submit, class: "btn-search-home") do %>
+        <i class="fa fa-search"></i>
+       <% end %>
+      <% end %>
+      <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
+        <div class="badge-container">
+          <i class="fa fa-envelope-o"></i>
+          <% if @nb_pending == 0 %>
+             <div class="badge badge-green" style="color: white;">
+              <%= @nb_pending %>
+            </div>
+          <% else %>
+            <div class="badge badge-red" style="color: white;">
+              <%= @nb_pending %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <span class="navbar-user-name"><%= current_user.first_name.capitalize%></span>
+      <!-- Profile picture and dropdown -->
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <% if current_user.picture %>
+            <%= cl_image_tag current_user.picture.path,:default_image =>"avatar.jpg", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"%>
+          <% else %>
+            <%= image_tag "avatar.jpg", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% end %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to user_path(current_user) do %>
+                <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to root_path do %>
+                <i class="fa fa-home"></i>  <%= t ".profile", default: "Home" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% else %>
+
+      <!-- Login text link -->
+       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+    <% end %>
+
+    <!-- Button (call-to-action) -->
+    <%= link_to t(".top_call_to_action", default: "Créer un tour"), new_tour_path, class: "navbar-wagon-item navbar-wagon-button btn nav-tour-btn" %>
+  </div>
+
+  <!-- Dropdown list appearing on mobile only -->
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li><a href="#">Some mobile link</a></li>
+        <li><a href="#">Other one</a></li>
+        <li><a href="#">Other one</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

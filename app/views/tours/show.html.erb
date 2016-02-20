@@ -112,7 +112,7 @@
   <div class="container">
     <div class="row">
       <div class="wrapper-white padded">
-      <h3>TOP 3 Most Visited Tours</h3>
+      <h3>Nos City Lovers ont aussi aimé</h3>
         <div class="container">
           <div class="row">
             <% Tour.all.sample(3).each do |tour| %>
@@ -129,10 +129,10 @@
 
 
 <% content_for(:after_js) do %>
- <%= javascript_tag do %>
+  <%= javascript_tag do %>
     $(document).on('ready', function() {
       handler = Gmaps.build('Google');
-      handler.buildMap({ provider: { scrollwheel: false }, internal: { id: 'map' } }, function(){
+      handler.buildMap({ provider: { scrollwheel: false }, internal: { id: 'map' }, provider: { scrollwheel: false } }, function(){
         markers = handler.addMarkers(<%= raw @markers.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
@@ -143,5 +143,5 @@
     $('.part-size-review').children().first().addClass('col-sm-5')
     $('.full-size-review').children().first().removeClass('col-sm-12')
     $('.full-size-review').children().first().addClass('col-sm-11')
- <% end %>
+  <% end %>
 <% end %>

@@ -23,12 +23,13 @@
           <div class="form-actions button-action-form">
                   <%= f.button :submit, "Se connecter", class: "btn btn-danger" %>
             </div>
-             <%= render "devise/shared/link_facebook" %>
+
 
              <div class="links-gray">
                <i class="fa fa-ambulance"></i><%= render "devise/shared/link_forgot_pass" %>
              </div>
         <% end %>
+        <%= render "devise/shared/link_facebook" %>
       </div>
     </div>
   </div>

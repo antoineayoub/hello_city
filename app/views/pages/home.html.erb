@@ -7,9 +7,11 @@
     <p>La meilleure façon de découvrir et comprendre une ville</p>
   </div>
   <div id="wrapper-form">
-    <%= form_tag(tours_path, :method => "get", class: "form-inline search-bar") do %>
-       <%= text_field_tag :address, params[:address], class: "form-control fields search-bar ", id: "user_input_autocomplete_address", placeholder: 'Où cherchez-vous une visite ?' %>
-       <%= submit_tag "Chercher", class: "btn btn-danger" %>
+    <%= form_tag(tours_path, :method => "get", class: "form-inline") do %>
+       <%= text_field_tag :address, params[:address], class: "form-control fields custom-bar", id: "user_input_autocomplete_address", placeholder: 'Où cherchez-vous une visite ?' %>
+       <%= button_tag(type: :submit, class: "btn-search-home") do %>
+        <i class="fa fa-search"></i>
+       <% end %>
     <% end %>
   </div>
   <div class="angle-position">
