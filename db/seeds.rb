@@ -11,8 +11,9 @@ require 'faker'
 require 'cloudinary'
 
 Booking.destroy_all
-User.destroy_all
 Tour.destroy_all
+Review.destroy_all
+User.destroy_all
 
 # CREATE USER
 user_tbl_id = []
