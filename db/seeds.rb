@@ -116,17 +116,19 @@ end
       )
     booking.save
   end
+
+  5.times do
+  review = Review.new(
+    rating: (1..5).to_a.sample,
+    review: Faker::Lorem.paragraph,
+    user_id: user_id,
+    tour_id: tour_id
+    )
+  review.save
+  end
+
 end
 
 # CREATE REVIEWS
 
-100.times do
-  tour_id = Faker::Number.between(tour_tbl_id.first, tour_tbl_id.last)
-  review = Review.new(
-    rating: (1..5).to_a.sample,
-    review: Faker::Lorem.paragraph,
-    user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
-    tour_id: tour_id
-    )
-  review.save
-end
+
