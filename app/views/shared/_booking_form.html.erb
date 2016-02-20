@@ -46,6 +46,17 @@
 
     })
 
+    $(window).scroll(function() {
+      if ($(window).scrollTop() >= 337) {
+        $(".decide-booking-card").addClass("decide-booking-fixed")
+        $(".decide-booking-card").removeClass("decide-booking-absolute")
+      } else {
+        $(".decide-booking-card").removeClass("decide-booking-fixed")
+        $(".decide-booking-card").addClass("decide-booking-absolute")
+      }
+    })
+
+
   <% end %>
 
 

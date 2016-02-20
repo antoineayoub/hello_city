@@ -90,7 +90,7 @@ end
   tour_id = Faker::Number.between(tour_tbl_id.first, tour_tbl_id.last)
   booking = Booking.new(
     start_at: Faker::Time.between(DateTime.now, DateTime.now + 100),
-    status: 'pending',
+    status: ['pending', 'accepted'].sample,
     user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
     tour_id: tour_id,
     price: Tour.find(tour_id).price,
@@ -99,3 +99,15 @@ end
   booking.save
 end
 
+# CREATE REVIEWS
+
+100.times do
+  tour_id = Faker::Number.between(tour_tbl_id.first, tour_tbl_id.last)
+  review = Review.new(
+    rating: (1..5).to_a.sample,
+    review: Faker::Lorem.paragraph,
+    user_id: Faker::Number.between(user_tbl_id.first, user_tbl_id.last),
+    tour_id: tour_id
+    )
+  review.save
+end

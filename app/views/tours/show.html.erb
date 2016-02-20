@@ -90,7 +90,7 @@
       <div class="col-md-6">
         <div id="map"style="height:300px;"></div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="more-about">
             <h3>More about your guide!</h3>
             <p style="font-style:italic;"> <%= @tour.user.summary %> </p>
@@ -103,22 +103,8 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <%= simple_form_for [@tour, @review] do |f| %>
-        <%= f.input :rating, collection: 1..5 %>
-        <%= f.input :review %>
-        <%= f.button :submit %>
-      <% end %>
-    </div>
-    <div class="col-sm-6">
-      <%= @reviews.each do |review|%>
-        <p>review.review</p>
-        <p>review.rating</p>
-      <% end %>
-    </div>
-  </div>
+<div class="review-block">
+  <%= render 'shared/tour_review_wrapper', local: { tour: @tour, review: @review, reviews: @reviews } %>
 </div>
 
 
@@ -144,16 +130,18 @@
 
 <% content_for(:after_js) do %>
  <%= javascript_tag do %>
-   $(document).on('ready', function() {
-     handler = Gmaps.build('Google');
-     handler.buildMap({ provider: { scrollwheel: false }, internal: { id: 'map' } }, function(){
-       markers = handler.addMarkers(<%= raw @markers.to_json %>);
-       handler.bounds.extendWith(markers);
-       handler.fitMapToBounds();
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: { scrollwheel: false }, internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
         handler.getMap().setZoom(14);
-        handler.getMap().disableScrollWheelZoom();
-
-     });
-   })
+      });
+    })
+    $('.part-size-review').children().first().removeClass('col-sm-6')
+    $('.part-size-review').children().first().addClass('col-sm-5')
+    $('.full-size-review').children().first().removeClass('col-sm-12')
+    $('.full-size-review').children().first().addClass('col-sm-11')
  <% end %>
 <% end %>

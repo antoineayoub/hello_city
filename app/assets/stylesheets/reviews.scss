@@ -1,3 +1,33 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.review-each {
+    background-color: #FDFDFD;
+    border: 1px solid #E0DFDF;
+    box-shadow: 1px 1px 2px #DCD9D9;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+    font-size: 14px;
+
+}
+.review-each i {
+  font-size: 12px;
+}
+.review-form {
+  padding: 10px 30px;
+}
+.review-block {
+      border-bottom: 1px solid #FAF6F6;
+    box-shadow: 1px 1px 2px #F8F5F5;
+    color: #555555;
+    padding: 30px 0px;
+    background-color: #DEDCDC;
+}
+.review-block textarea {
+  height: 150px;
+}
+.title-review-card {
+      display: flex;
+    flex-direction: row;
+}

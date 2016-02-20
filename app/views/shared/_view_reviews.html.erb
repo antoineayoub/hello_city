@@ -1,0 +1,29 @@
+<% if reviews.size == 0 %>
+  <p style="margin-left:10px;"> No reviews yet ! </p>
+<% else %>
+  <% reviews.each do |review|%>
+    <div class="review-each">
+      <div class="title-review-card">
+        <div>
+          <%= cl_image_tag(review.user.picture.path, { crop: :fill, class: "avatar" }) unless review.user.picture.nil? %>
+        </div>
+        <div style="margin-left: 10px;">
+          <div>
+            <b> <%= review.user.first_name %> - </b>
+            <% review.rating.times do %>
+              <i class="fa fa-star" style="color:green;"></i>
+            <% end %>
+            <% (5 - review.rating).times do %>
+              <i class="fa fa-star-o"></i>
+            <% end %>
+            <span style="font-size:12px;"> - <%= "#{(((Time.new - review.created_at)/60000).round)} mn ago"%> </span>
+          </div>
+          <div>
+            <p style="font-size: 12px;"> on <i><%= review.tour.name %></i> with <i><%= review.tour.user.first_name %> </i></p>
+          </div>
+        </div>
+      </div>
+      <p> <%= review.review %> </p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,36 @@
+<% if reviewable?(@tour) %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="review-form">
+          <h3>Add a review</h3>
+          <%= simple_form_for [@tour, @review] do |f| %>
+            <%= f.input :rating, collection: 1..5, style: "max-width: 200px;" %>
+            <%= f.input :review, as: :text %>
+            <%= button_tag( type: 'submit', class: "btn btn-success btn-review", style: "width:100%") do %>
+              <i class="fa fa-pencil"></i> <span style="padding-left:5px;">Create Review</span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="review-comments part-size-review">
+        <div class="col-sm-6">
+          <h3 style="margin-left:10px;">All Reviews</h3>
+          <%= render "shared/view_reviews", reviews: @reviews %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+
+<div class="container">
+  <div class="row">
+    <div class="review-comments full-size-review">
+      <div class="col-sm-12">
+        <h3 style="margin-left:10px;">All Reviews</h3>
+        <%= render "shared/view_reviews", reviews: @reviews %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

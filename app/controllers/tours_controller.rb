@@ -37,24 +37,24 @@ class ToursController < ApplicationController
     else
       @tours = Tour.all
     end
-
-end
-
-  def reviewable?(booking, review)
-    # current_user = validated_booking.user_id && review.user_id does not exist
-    if current_user = booking.user && current_user.reviews
-      true
-    else
-      false
-    end
   end
 
   def guide_profile
     @tour = Tour.find(params[:id])
     @guide_tours = Tour.where("user_id = #{@tour.user_id}")
-    #@user_tours = Tour.where("@tour.user_id = guide_id")
-  end
 
+    tours_id = []
+    @guide_tours.each { |tour| tours_id << tour.id }
+
+    full_reviews = Review.all
+    guide_reviews = []
+
+    tours_id.each do |tour_id|
+      full_reviews.each { |full_review| guide_reviews << full_review if full_review.tour_id == tour_id }
+    end
+
+    @reviews = guide_reviews
+  end
 
   def index_user
     @user_tours = Tour.where("user_id = #{current_user.id}")
@@ -105,7 +105,7 @@ end
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
-    @reviews = Review.all
+    @reviews = Review.where("tour_id = #{params[:id]}")
   end
 
   def search
