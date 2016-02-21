@@ -40,6 +40,7 @@ class ToursController < ApplicationController
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
+  end
 
   def guide_profile
     @tour = Tour.find(params[:id])
