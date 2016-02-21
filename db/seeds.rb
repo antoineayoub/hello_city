@@ -11,8 +11,9 @@ require 'faker'
 require 'cloudinary'
 
 Booking.destroy_all
-User.destroy_all
 Tour.destroy_all
+Review.destroy_all
+User.destroy_all
 
 # CREATE USER
 user_tbl_id = []
@@ -108,7 +109,7 @@ end
   unless user_id == Tour.find(tour_id).user_id
     booking = Booking.new(
       start_at: Faker::Time.between(DateTime.now, DateTime.now + 100),
-      status: 'pending',
+      status: ['pending', 'accepted'].sample,
       user_id: user_id,
       tour_id: tour_id,
       price: Tour.find(tour_id).price,
@@ -116,5 +117,19 @@ end
       )
     booking.save
   end
+
+  5.times do
+  review = Review.new(
+    rating: (1..5).to_a.sample,
+    review: Faker::Lorem.paragraph,
+    user_id: user_id,
+    tour_id: tour_id
+    )
+  review.save
+  end
+
 end
+
+# CREATE REVIEWS
+
 
