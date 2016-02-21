@@ -1,4 +1,4 @@
-<div class="decide-booking-card">
+<div class="decide-booking-card decide-booking-absolute">
   <div class="booking-title">
     <p>Reservez</p>
   </div>
@@ -45,6 +45,17 @@
       }
 
     })
+
+    $(window).scroll(function() {
+      if ($(window).scrollTop() >= 337) {
+        $(".decide-booking-card").addClass("decide-booking-fixed")
+        $(".decide-booking-card").removeClass("decide-booking-absolute")
+      } else {
+        $(".decide-booking-card").removeClass("decide-booking-fixed")
+        $(".decide-booking-card").addClass("decide-booking-absolute")
+      }
+    })
+
 
   <% end %>
 

@@ -1,6 +1,7 @@
 class Tour < ActiveRecord::Base
   belongs_to :user
   has_many :bookings
+  has_many :reviews, dependent: :destroy
 
   has_attachments :photos, maximum: 5, accept: [:jpg, :png]
 

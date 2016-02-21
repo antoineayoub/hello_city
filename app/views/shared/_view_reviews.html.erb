@@ -1,0 +1,71 @@
+<% if reviews.size == 0 %>
+  <p style="margin-left:10px;"> No reviews yet ! </p>
+<% else %>
+  <% reviews.each_with_index do |review, index|%>
+    <div class="review-each" data-ft="<%= index %>">
+      <div class="title-review-card">
+        <div>
+          <%= cl_image_tag(review.user.picture.path, { crop: :fill, class: "avatar" }) unless review.user.picture.nil? %>
+        </div>
+        <div style="margin-left: 10px;">
+          <div>
+            <b> <%= review.user.first_name %> - </b>
+            <% review.rating.times do %>
+              <i class="fa fa-star" style="color:green;"></i>
+            <% end %>
+            <% (5 - review.rating).times do %>
+              <i class="fa fa-star-o"></i>
+            <% end %>
+            <span style="font-size:12px;"> - <%= "#{(((Time.new - review.created_at)/60000).round)} mn ago"%> </span>
+          </div>
+          <div>
+            <p style="font-size: 12px;"> on <i><%= review.tour.name %></i> with <i><%= review.tour.user.first_name %> </i></p>
+          </div>
+        </div>
+      </div>
+      <p> <%= review.review %> </p>
+    </div>
+  <% end %>
+<% end %>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+
+  var $viewMore           = $("<a class='btn btn-primary view-more' style='width:100%;'>View More Comments</a>");
+  displayComments(3);
+
+  $('.review-comments').on('click', '.view-more', function(){
+    var totalCommentsNb     = $(".review-each").length;
+    var hiddenCommentsNb    = $(".hide-comment").length;
+    var displayedCommentsNb = totalCommentsNb - hiddenCommentsNb;
+    displayComments(displayedCommentsNb + 3);
+  })
+
+  function displayComments(numberToDisplay) {
+    $(".review-each").each(function(){
+
+      var commentRank = parseInt($(this).attr("data-ft"));
+      var $comment    = $(this);
+
+      if (commentRank > numberToDisplay) {
+        $comment.addClass('hide-comment');
+      } else {
+        $comment.fadeIn("slow", function() {
+            $(this).removeClass('hide-comment');
+        });
+      }
+    })
+
+    var hiddenCommentsNb    = $(".hide-comment").length;
+
+    $('.view-more').remove();
+    if (hiddenCommentsNb > 0) {
+      $('.review-comments .col-sm-12').append($viewMore);
+      $('.review-comments .col-sm-11').append($viewMore);
+      $('.review-comments .col-sm-6').append($viewMore);
+    }
+  }
+
+
+  <% end %>
+<% end %>
