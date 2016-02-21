@@ -2,12 +2,10 @@ class UsersController < ApplicationController
 
   def show
     @not_cancelled_bookings = Booking.where("status <> 'cancelled' AND user_id=#{params[:id]}")
-    count_pending
   end
 
   def edit
     @user = User.find(params[:id])
-    count_pending
   end
 
   def update

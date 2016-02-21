@@ -8,7 +8,6 @@ class PagesController < ApplicationController
   def home
     @tours = Tour.all
     @navbar_white = true
-    count_pending
     @home_search = false
   end
 

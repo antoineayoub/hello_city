@@ -41,7 +41,6 @@ class ToursController < ApplicationController
       marker.lng tour.longitude
     end
 
-    count_pending
 end
 
   def guide_profile
@@ -57,7 +56,6 @@ end
 
   def new
     @tour = Tour.new
-    count_pending
   end
 
   def create
@@ -72,7 +70,6 @@ end
 
   def edit
     @tour = Tour.find(params[:id])
-    count_pending
   end
 
   def update
@@ -102,7 +99,6 @@ end
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
-    count_pending
   end
 
   def search(tours)
