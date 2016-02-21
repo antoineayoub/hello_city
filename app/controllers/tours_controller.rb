@@ -41,9 +41,6 @@ class ToursController < ApplicationController
       marker.lng tour.longitude
     end
 
-    count_pending
-  end
-
   def guide_profile
     @tour = Tour.find(params[:id])
     @guide_tours = Tour.where("user_id = #{@tour.user_id}")
@@ -67,7 +64,6 @@ class ToursController < ApplicationController
 
   def new
     @tour = Tour.new
-    count_pending
   end
 
   def create
@@ -82,7 +78,6 @@ class ToursController < ApplicationController
 
   def edit
     @tour = Tour.find(params[:id])
-    count_pending
   end
 
   def update
@@ -113,8 +108,9 @@ class ToursController < ApplicationController
       marker.lat tour.latitude
       marker.lng tour.longitude
     end
+
     @reviews = Review.where("tour_id = #{params[:id]}")
-    count_pending
+
   end
 
   def search(tours)
