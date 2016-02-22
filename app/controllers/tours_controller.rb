@@ -2,30 +2,55 @@ class ToursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-
     @skip_footer = true
 
-    params_hash = {
-      guide_level: params[:guide_level],
-      price: params[:price],
-      provides_car: params[:provides_car],
-      provides_ticket: params[:provides_ticket],
-      provides_food: params[:provides_food],
-      tour_duration: params[:tour_duration],
-      language: params[:language]
-    }
+    # for price ranges
+    # slider range > put 2 methods in private controllers
+    @min_tour_price       = Tour.minimum(:price).to_i
+    @max_tour_price       = Tour.maximum(:price).to_i
+    @price_steps          = ((@max_tour_price - @min_tour_price) / 10).round
+    @current_price_value  = @max_tour_price
+    @min_tour_duration    = Tour.minimum(:tour_duration).to_i
+    @max_tour_duration    = Tour.maximum(:tour_duration).to_i
+    @duration_steps       = ((@max_tour_duration - @min_tour_duration) / 10).round
+    @current_duration_value = @max_tour_price
+
     search_query = ""
 
+    # method could work
     if  params[:tour_duration].to_i != 0
       search_query << "(tour_duration <= #{params[:tour_duration].to_i})"
+      @current_duration_value = params[:tour_duration].to_i
     end
 
     if  params[:price].to_i != 0
-      search_query << "(price <= #{params[:price].to_i})"
+      search_query << " AND (price <= #{params[:price].to_i})"
+      @current_price_value = params[:price].to_i
     end
 
+    params_hash = {
+      provides_ticket: params[:provides_ticket],
+      provides_car: params[:provides_car],
+      provides_food: params[:provides_food],
+      guide_level: params[:guide_level],
+      language: params[:language]
+    }
+
     params_hash.each do |key, value|
-      search_query << " AND (#{key.to_s} = #{params_hash[key]}) " unless params_hash[key] = "" || params_hash[key] = nil
+
+      if key == :guide_level
+        value = params[:guide_level].to_i unless params[:guide_level].nil?
+        search_query << " AND (#{key.to_s} = #{params[key]}) " unless value == "" || value == nil || value == 0
+      else
+        if value == 'true'
+          value = true
+        elsif value == 'false'
+          value = false
+        else
+          value
+        end
+        search_query << " AND (#{key.to_s} = #{params[key]}) " unless value == "" || value == nil || value == 0
+      end
     end
 
     if Tour.search_for(search_query).count >= 0
@@ -42,6 +67,13 @@ class ToursController < ApplicationController
     end
 
     count_pending
+  end
+
+  def search(tours)
+    if params[:address].present?
+      tours = tours.near(params[:address], 1)
+    end
+    tours
   end
 
   def guide_profile
@@ -115,13 +147,6 @@ class ToursController < ApplicationController
     end
     @reviews = Review.where("tour_id = #{params[:id]}")
     count_pending
-  end
-
-  def search(tours)
-    if params[:address].present?
-      tours = tours.near(params[:address], 1)
-    end
-    tours
   end
 
   private

@@ -1,4 +1,5 @@
 module ToursHelper
+  attr_reader :to_boolean
 
   def reviewable?(tour)
     # current_user = validated_booking.user_id && review.user_id does not exist

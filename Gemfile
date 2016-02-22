@@ -24,6 +24,8 @@ gem "attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
 
+gem 'wannabe_bool'
+
 # for pagination
 gem "kaminari"
 gem 'swipebox'

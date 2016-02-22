@@ -10,18 +10,53 @@
       <div class="index-filters">
         <div class="price-range">
           <ul class="list-inline">
-            <li><%= label_tag 'Maximum Price:  ' %></li>
-            <li><%= Tour.minimum(:price).to_i %>€</li>
-            <li><%= range_field_tag :price, class: "range-form" %></li>
-            <li><%= Tour.maximum(:price).to_i %>€</li>
+            <li>
+              <ul class="list-inline">
+                 <li>
+                   <%= label_tag 'Maximum Price:' %>
+                 </li>
+                 <li>
+                   <output class="updated-sliding-data" name="priceOutputName" id="priceOutputId"><%= @current_price_value %></output>
+                 </li>
+               </ul>
+            </li>
+            <div class="full-slider-range">
+            <ul class="list-inline">
+              <li><%= @min_tour_price %>€</li>
+              <li>
+                <input
+                    type="range"
+                    name="price"
+                    id="price"
+                    min="<%= @min_tour_price %>"
+                    max="<%= @max_tour_price %>"
+                    step="<%= @price_steps %>"
+                    class="range-form"
+                    value="<%= @current_price_value %>"
+                    oninput="priceOutputId.value = price.value"/>
+              </li>
+              <li><%= @max_tour_price %>€</li>
+            </ul>
+            </div>
           </ul>
         </div>
         <div class="duration-range">
           <ul class="list-inline">
-            <li><%= label_tag 'Max Tour Duration:   ' %></li>
-            <li><%= Tour.minimum(:tour_duration).to_i %>hr</b></li>
-            <li><%= range_field_tag :tour_duration, class: "range-form" %></li>
-            <li><%= Tour.maximum(:tour_duration).to_i %>hrs</li>
+            <li><%= label_tag 'Max Tour Duration:' %></li>
+            <output class="updated-sliding-data" name="durationOutputName" id="durationOutputId"><%= @current_duration_value %></output>
+            <li><%= @min_tour_duration %>hr</b></li>
+            <li><input
+              type="range"
+              name="tour_duration"
+              id="tour_duration"
+              min="<%= @min_tour_duration %>"
+              max="<%= @max_tour_duration %>"
+              step="<%= @duration_steps %>"
+              class="range-form"
+              value="<%= @current_duration_value %>"
+              oninput="durationOutputId.value = duration.value"/>
+            </li>
+            <li><%= @max_tour_duration %>hrs</li>
           </ul>
         </div>
       </div>
@@ -63,7 +98,7 @@
 </div>
 
 <% content_for(:after_js) do %>
- <%= javascript_tag do %>
+ <script>
    $(document).on('ready', function() {
      handler = Gmaps.build('Google');
      handler.buildMap({ provider: {scrollwheel: false}, internal: { id: 'map' } }, function(){
@@ -79,5 +114,5 @@
        })
      });
     })
- <% end %>
+ </script>
 <% end %>
