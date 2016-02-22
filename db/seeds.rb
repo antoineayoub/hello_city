@@ -9,12 +9,13 @@
 #
 require 'faker'
 require 'cloudinary'
+require 'open-uri'
 
 Booking.destroy_all
 Tour.destroy_all
 Review.destroy_all
 User.destroy_all
-
+Cloudinary::Api.delete_all_resources
 # CREATE USER
 user_tbl_id = []
 tour_tbl_id = []
@@ -32,6 +33,8 @@ https://www.business2blogger.com/wp-content/uploads/2014/04/Profile-Big-Square.j
 https://s3.amazonaws.com/steady-static/img/provider/bcvOrym6Jp90TPVGjBdR4s8BLzOgL2YzMHX9_profile_square.jpg
 https://nianow.com/sites/nianow.com/files/user-files/user-7338/profile/square-profile.jpg)
 
+
+
 10.times do
   first_name = Faker::Name.first_name
   user = User.new(
@@ -42,7 +45,8 @@ https://nianow.com/sites/nianow.com/files/user-files/user-7338/profile/square-pr
           summary: Faker::Lorem.paragraph
           )
 
-  user.picture_url = tbl_pic[cpt]
+  #user.picture_url = tbl_pic[cpt]
+  user.send(:picture=, open(tbl_pic[cpt]),:folder => 'hello_city/profile_pics')
   user.save
   user_tbl_id << user.id
   cpt = cpt + 1
@@ -96,7 +100,8 @@ tour_addresses = ["Place de la Bastille Paris",
             provides_car: [true, false].sample,
             provides_ticket: [true, false].sample
             )
-  tour.photo_urls = photo_urls.sample(3)
+  #tour.photo_urls = photo_urls.sample(3)#:public_id => 'my_folder/my_sub_folder
+  tour.send(:photo_urls=, photo_urls.sample(3),:folder => 'hello_city/tours/')
   tour.save
   tour_tbl_id << tour.id
 end
