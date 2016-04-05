@@ -20,4 +20,8 @@
 @import "tours";
 @import "users";
 @import "bookings";
-@import "reviews"
+@import "reviews";
+
+body {
+  background: red !important;
+}

@@ -23,6 +23,7 @@ gem "cloudinary"
 gem "attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
+gem 'rails-i18n', '~> 4.0.0'
 
 # for pagination
 gem "kaminari"
